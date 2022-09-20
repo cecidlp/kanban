@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div class="app">
-    <router-view />
+  <div>
+    <h1>Sign In</h1>
   </div>
 </template>
