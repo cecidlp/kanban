@@ -3,6 +3,6 @@
 
 <template>
   <div>
-    <h1>Landing Page 'test netlify'</h1>
+    <h1>Landing Page</h1>
   </div>
 </template>
