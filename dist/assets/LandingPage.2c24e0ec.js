@@ -1,0 +1,1 @@
+import{_ as e,o as a,c as n,a as c}from"./index.fa1d1fa4.js";const o={},t=c("h1",null,"Landing Page",-1),s=[t];function r(_,d){return a(),n("div",null,s)}var l=e(o,[["render",r]]);export{l as default};
