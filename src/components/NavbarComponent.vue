@@ -1,9 +1,12 @@
-<script setup>
-// Navbar should accept the value 'logOut' to change the button for a log out one
-</script>
-
 <template>
   <div>
-    <h1>Navbar</h1>
+    <button class="buttonUser"/>
   </div>
 </template>
+
+<script>
+export default {};
+</script>
+
+<style>
+</style>
