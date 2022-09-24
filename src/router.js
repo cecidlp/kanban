@@ -14,18 +14,19 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: () => import(/* webpackChunkName: 'todos' */ './components/LogInComponent.vue'),
+    component: () => import(/* webpackChunkName: 'login' */ './components/LogInComponent.vue'),
   },
   {
     path: '/signin',
     name: 'signin',
-    component: () => import(/* webpackChunkName: 'todos' */ './components/SignInComponent.vue'),
+    component: () => import(/* webpackChunkName: 'signin' */ './components/SignInComponent.vue'),
   },
   {
     path: '/navbar',
     name: 'navbar',
     component: () => import(/* webpackChunkName: 'todos' */ './components/NavbarComponent.vue'),
   },
+
 ];
 
 const router = createRouter({
