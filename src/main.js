@@ -8,12 +8,12 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 /* import specific icons */
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import router from './router';
 import App from './App.vue';
 
 /* add icons to the library */
-library.add(faUser);
+library.add(faUser, faPowerOff);
 
 createApp(App)
   .use(router)

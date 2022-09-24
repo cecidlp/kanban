@@ -2,7 +2,8 @@
   <div class="navBar">
     <div>
       <img class="logo" src="/src/assets/ironhack-logo.svg" alt="Ironhack logo" @click="goToLanding">
-      <font-awesome-icon class="user" icon="fa-solid fa-user" @click="goToLogIn" />
+      <font-awesome-icon v-if="!logOut" class="icon" icon="fa-solid fa-user" @click="goToLogIn" />
+      <font-awesome-icon v-else class="icon" icon="fa-solid fa-power-off" @click="goToLanding" />
     </div>
   </div>
 </template>
@@ -25,7 +26,15 @@ function goToLogIn() {
 }
 </script>
 
-<style>
+<script>
+export default {
+  props: {
+    logOut: { type: Boolean, default: false },
+  },
+};
+</script>
+
+<style scoped>
   .navBar {
     box-shadow: 0 2px 20px -3px rgb(0 0 0 / 10%);
   }
@@ -40,13 +49,13 @@ function goToLogIn() {
     margin: 1rem;
     filter: hue-rotate(36deg);
   }
-  .user {
+  .icon {
     color: #f2735b;
     height: 1.3rem;
     width: 2rem;
     margin: 1rem;
   }
-  .user:hover {
+  .icon:hover {
     opacity: 0.7;
     transition: 0.5s;
   }
