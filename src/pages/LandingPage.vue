@@ -59,4 +59,9 @@ function goToSignIn() {
     margin: 2rem 0;
     text-align: center;
   }
+  @media only screen and (min-width: 700px) {
+    img {
+      width: 50rem;
+    }
+  }
 </style>
