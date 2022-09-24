@@ -21,6 +21,7 @@ const routes = [
     name: 'signin',
     component: () => import(/* webpackChunkName: 'todos' */ './components/SignInComponent.vue'),
   },
+
 ];
 
 const router = createRouter({
