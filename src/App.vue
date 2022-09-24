@@ -1,16 +1,31 @@
 <script setup>
+import NavbarComponent from './components/NavbarComponent.vue';
 </script>
 
 <template>
   <div class="app">
+    <NavbarComponent />
     <router-view />
   </div>
 </template>
 
 <style>
-  @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+:root {
+  --button-color: #f2735b;
+  --title-color: #050f43;
+  --subtitle-landing: #255252;
+  --text-color: #030303;
 
-  * {
-    font-family: Roboto;
-  }
+  /* Paletas de colores a usar en los ToDo components*/
+
+  --component-one: #96d0c7;
+  --component-two: #e8a695;
+  --component-three: #f4cc7f;
+  --component-four: #f2735b;
+}
+* {
+  font-family: Roboto;
+  margin: 0;
+}
 </style>
