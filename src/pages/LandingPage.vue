@@ -1,5 +1,16 @@
 <script setup>
+import { useRouter } from 'vue-router';
+
 import ButtonComponent from '../components/ButtonComponent.vue';
+
+const router = useRouter();
+
+function goToSignIn() {
+  router.push({
+    name: 'signin',
+  });
+}
+
 </script>
 
 <template>
@@ -12,7 +23,7 @@ import ButtonComponent from '../components/ButtonComponent.vue';
     <span>
       Let us help you!
     </span>
-    <ButtonComponent class="btn" button-text="Get Started" />
+    <ButtonComponent class="btn" button-text="Get Started" @click="goToSignIn" />
   </div>
 </template>
 
