@@ -35,96 +35,66 @@ const router = useRouter();
         <div class="column1">
           <div class="rowByGroup">
             <div class="headerStatusGroup">
-              <p class="titleTask">
+              <h2 class="titleTask">
                 To Do
-              </p>
-              <button class="buttonOpenTask">
+              </h2>
+              <button class="addTask">
                 +
               </button>
             </div>
-            <div class="infoByTask">
+            <div class="infoByTask1" @click="openModal">
               <p>Title of the task 1</p>
-              <button class="buttonOpenTask">
-                Open
-              </button>
             </div>
-            <div class="infoByTask">
+            <div class="infoByTask1">
               <p>Title of the task 2</p>
-              <button class="buttonOpenTask">
-                Open
-              </button>
             </div>
-            <div class="infoByTask">
+            <div class="infoByTask1">
               <p>Title of the task 3</p>
-              <button class="buttonOpenTask">
-                Open
-              </button>
             </div>
-            <div class="infoByTask">
+            <div class="infoByTask1">
               <p>Title of the task 4</p>
-              <button class="buttonOpenTask">
-                Open
-              </button>
             </div>
-            <div class="infoByTask">
+            <div class="infoByTask1">
               <p>Title of the task 5</p>
-              <button class="buttonOpenTask">
-                Open
-              </button>
             </div>
           </div>
         </div>
         <div class="column2">
           <div class="rowByGroup">
             <div class="headerStatusGroup">
-              <p class="titleTask">
+              <h2 class="titleTask">
                 In progress
-              </p>
-              <button class="buttonOpenTask">
+              </h2>
+              <button class="addTask">
                 +
               </button>
             </div>
-            <div class="infoByTask">
+            <div class="infoByTask2">
               <p>Title of the task X</p>
-              <button class="buttonOpenTask">
-                Open
-              </button>
             </div>
-            <div class="infoByTask">
+            <div class="infoByTask2">
               <p>Title of the task Y</p>
-              <button class="buttonOpenTask">
-                Open
-              </button>
             </div>
           </div>
         </div>
         <div class="column3">
           <div class="rowByGroup">
             <div class="headerStatusGroup">
-              <p class="titleTask">
+              <h2 class="titleTask">
                 Done
-              </p>
-              <button class="buttonOpenTask">
+              </h2>
+              <button class="addTask">
                 +
               </button>
             </div>
-            <div class="infoByTask">
+            <div class="infoByTask3">
               <p>Title of the task A</p>
-              <button class="buttonOpenTask">
-                Open
-              </button>
             </div>
-            <div class="infoByTask">
+            <div class="infoByTask3">
               <p>Title of the task B</p>
-              <button class="buttonOpenTask">
-                Open
-              </button>
             </div>
-            <div class="infoByTask">
+            <div class="infoByTask3">
               <p>Title of the task C</p>
-              <button class="buttonOpenTask">
-                Open
-              </button>
             </div>
           </div>
         </div>
@@ -134,30 +104,28 @@ const router = useRouter();
 </template>
 
 <style scoped>
-
-  h1 {
-    color: #050F43;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
-  }
+h1 {
+  color: #050f43;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
 .mainContainer {
   background-color: white;
-  margin: 4rem;
+  margin: 10%;
 }
 
 .buttonsMenu {
   align-items: center;
   background-color: var(--component-three);
-  border: 2px solid #050F43;
   border-radius: 8px;
   box-sizing: border-box;
-  color: #111;
   cursor: pointer;
   display: flex;
   font-size: 1rem;
   height: 3rem;
   width: 15%;
   justify-content: center;
+  border: none;
 }
 
 .mainMenu {
@@ -168,20 +136,14 @@ const router = useRouter();
   align-items: center;
 }
 
-/*.groupStatus {
-
-}*/
-
 .mainRow {
   display: flex;
-    height: 100%;
+  height: 100%;
   justify-content: space-between;
   padding-top: 1rem;
   align-items: flex-start;
 }
 .column1 {
-  background-color: var(--component-one);
-  border: 2px solid #1A1A1A;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   text-align: center;
@@ -189,16 +151,12 @@ const router = useRouter();
 }
 .column2 {
   width: 30%;
-  background-color: var(--component-two);
-  border: 2px solid #1A1A1A;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   text-align: center;
 }
 .column3 {
   width: 30%;
-  background-color: #7ba8ff;
-  border: 2px solid #1A1A1A;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   text-align: center;
@@ -216,27 +174,81 @@ const router = useRouter();
 .headerStatusGroup {
   display: flex;
   justify-content: space-between;
-  height: 40px;
+  height: 2rem;
   align-items: center;
 }
 
-.infoByTask {
-  background-color: white;
-  height: 100px;
+.infoByTask1 {
+  height: 5rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
-  margin: 5px;
-  border-radius: 10px;
+  margin: 4%;
+  border-radius: 1rem;
+  background-color: var(--component-one);
+  padding-left: 4%;
 }
 
-.buttonOpenTask {
-  width: auto;
-  margin-right: 10px;
+.infoByTask2 {
+  height: 5rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 4%;
+  border-radius: 1rem;
+  background-color: var(--component-two);
+  padding-left: 4%;
+}
+
+.infoByTask3 {
+  height: 5rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 4%;
+  border-radius: 1rem;
+  background-color: #7ba8ff;
+  padding-left: 4%;
+}
+
+.addTask {
+  margin-right: 2%;
+  background-color: var(--component-three);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  border: none;
 }
 
 .titleTask {
   margin-left: 10px;
   font-weight: bold;
+  color: var(--title-color);
+  font-size: 1rem;
+  margin-left: 4%;
+}
+
+p {
+  color: var(--title-color);
+  font-size: 0.9rem;
+};
+
+@media only screen and (max-width: 600px) {
+
+  .mainMenu[data-v-164bc38e] {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .buttonsMenu {
+    background-color: var(--component-three);
+    border-radius: 8px;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 1rem;
+    height: 3rem;
+    width: 35%;
+    border: none;
+    text-align: left;
 }
 </style>
