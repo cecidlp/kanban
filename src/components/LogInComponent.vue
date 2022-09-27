@@ -1,29 +1,41 @@
 <template>
-  <div class="page-wrapper">
+  <div class="wrapper">
     <img src="../assets/logIn.png">
     <h1>I'm already a Task Lover!</h1>
-    <FormInputComponent v-model="form.email" label="Email" type="email" placeholder="Enter your email" />
-    <FormInputComponent v-model="form.password" label="Password" type="password" placeholder="Enter your password" />
+    <Input v-model="form.email" label="Email" type="email" placeholder="Enter your email" />
+    <Input v-model="form.password" label="Password" type="password" placeholder="Enter your password" />
+    <Button class="btn" text="Log in" @click="logIn" />
   </div>
 </template>
 
 <script>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
-import FormInputComponent from './actionables/FormInputComponent.vue';
+import Button from './actionables/ButtonComponent.vue';
+import Input from './actionables/FormInputComponent.vue';
 
 export default {
   components: {
-    FormInputComponent,
+    Button,
+    Input,
   },
   setup() {
+    const router = useRouter();
+
+    function logIn() {
+      router.push({
+        name: 'todos',
+      });
+    }
+
     const form = ref({
       email: '',
       password: '',
-      confirmPassword: '',
     });
 
     return {
+      logIn,
       form,
     };
   },
@@ -31,7 +43,7 @@ export default {
 </script>
 
 <style scoped>
-.page-wrapper {
+.wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,5 +54,11 @@ img {
 }
 h1 {
   margin-bottom: 2rem;
+}
+.btn {
+  width: 14rem;
+
+  margin: 2rem 0;
+  text-align: center;
 }
 </style>
