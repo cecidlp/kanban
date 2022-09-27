@@ -1,7 +1,7 @@
 <script setup>
 import { useRouter } from 'vue-router';
 
-import ButtonComponent from '../components/ButtonComponent.vue';
+import ButtonComponent from '../components/actionables/ButtonComponent.vue';
 
 const router = useRouter();
 
@@ -35,11 +35,7 @@ function goToSignIn() {
     flex-direction: column;
     align-items: center;
   }
-  h1 {
-    color: rgb(5, 15, 67);
-    font-weight: 700;
-    font-size: 24px;
-  }
+
   img {
     width: 100%;
     margin-bottom: 1rem;
