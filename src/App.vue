@@ -29,16 +29,17 @@ import NavbarComponent from './components/NavbarComponent.vue';
 * {
   font-family: Roboto;
   margin: 0;
+  color: var(--text-color)
 }
 
 h1 {
-  color: rgb(5, 15, 67);
+  color: var(--title-color);
   font-weight: 700;
   font-size: 24px;
 }
 
 span {
-  color: rgb(37, 82, 82);
+  color: var(--subtitle-landing);
   font-size: 15px;
   letter-spacing: 0px;
   line-height: 20px;

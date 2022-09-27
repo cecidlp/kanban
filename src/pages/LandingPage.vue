@@ -42,11 +42,6 @@ function goToSignIn() {
   }
   span {
     display: block;
-    color: rgb(37, 82, 82);
-    font-family: Roboto;
-    font-size: 15px;
-    letter-spacing: 0px;
-    line-height: 20px;
     text-align: center;
   }
   .btn {
