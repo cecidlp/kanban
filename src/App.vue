@@ -19,7 +19,6 @@ import NavbarComponent from './components/NavbarComponent.vue';
   --text-color: #030303;
 
   /* Paletas de colores a usar en los ToDo components*/
-
   --component-one: #96d0c7;
   --component-two: #e8a695;
   --component-three: #f4cc7f;
@@ -29,7 +28,6 @@ import NavbarComponent from './components/NavbarComponent.vue';
 * {
   font-family: Roboto;
   margin: 0;
-  color: var(--text-color)
 }
 
 h1 {
