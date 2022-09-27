@@ -121,7 +121,6 @@ h1 {
   box-sizing: border-box;
   cursor: pointer;
   display: flex;
-  font-size: 1rem;
   height: 3rem;
   width: 15%;
   justify-content: center;
@@ -231,14 +230,19 @@ h1 {
 p {
   color: var(--title-color);
   font-size: 0.9rem;
-};
+}
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
 
-  .mainMenu[data-v-164bc38e] {
+  .mainMenu {
     display: flex;
-    flex-direction: column;
     align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+    margin-bottom: 5%;
+
   }
   .buttonsMenu {
     background-color: var(--component-three);
@@ -246,9 +250,18 @@ p {
     box-sizing: border-box;
     cursor: pointer;
     font-size: 1rem;
-    height: 3rem;
-    width: 35%;
+    width: 30%;
     border: none;
-    text-align: left;
+}
+.mainRow {
+    display: flex;
+    height: 100%;
+    padding-top: 1rem;
+    flex-direction: column;
+}
+.column1, .column2, .column3 {
+  width: 100%;
+  margin-bottom: 10%;
+}
 }
 </style>
