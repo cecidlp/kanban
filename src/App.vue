@@ -11,6 +11,7 @@ import NavbarComponent from './components/NavbarComponent.vue';
 
 <style>
 @import url("https://fonts.googleapis.com/css?family=Roboto");
+
 :root {
   --button-color: #f2735b;
   --title-color: #050f43;
@@ -24,8 +25,22 @@ import NavbarComponent from './components/NavbarComponent.vue';
   --component-three: #f4cc7f;
   --component-four: #f2735b;
 }
+
 * {
   font-family: Roboto;
   margin: 0;
+}
+
+h1 {
+  color: rgb(5, 15, 67);
+  font-weight: 700;
+  font-size: 24px;
+}
+
+span {
+  color: rgb(37, 82, 82);
+  font-size: 15px;
+  letter-spacing: 0px;
+  line-height: 20px;
 }
 </style>
