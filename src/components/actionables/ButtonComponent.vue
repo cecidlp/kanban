@@ -1,13 +1,13 @@
 <script>
 export default {
   props: {
-    buttonText: { type: String, default: 'I\'m a button!' },
+    text: { type: String, default: 'I\'m a button!' },
   },
 };
 </script>
 
 <template>
-  <button>{{ buttonText }}</button>
+  <button>{{ text }}</button>
 </template>
 
 <style scoped>
