@@ -21,12 +21,6 @@ const routes = [
     name: 'signin',
     component: () => import(/* webpackChunkName: 'signin' */ './components/SignInComponent.vue'),
   },
-  {
-    path: '/navbar',
-    name: 'navbar',
-    component: () => import(/* webpackChunkName: 'todos' */ './components/NavbarComponent.vue'),
-  },
-
 ];
 
 const router = createRouter({
