@@ -45,16 +45,16 @@ const router = useRouter();
             <div class="infoByTask1" @click="openModal">
               <p>Title of the task 1</p>
             </div>
-            <div class="infoByTask1">
+            <div class="infoByTask1"@click="openModal">
               <p>Title of the task 2</p>
             </div>
-            <div class="infoByTask1">
+            <div class="infoByTask1"@click="openModal">
               <p>Title of the task 3</p>
             </div>
-            <div class="infoByTask1">
+            <div class="infoByTask1"@click="openModal">
               <p>Title of the task 4</p>
             </div>
-            <div class="infoByTask1">
+            <div class="infoByTask1"@click="openModal">
               <p>Title of the task 5</p>
             </div>
           </div>
@@ -69,10 +69,10 @@ const router = useRouter();
                 +
               </button>
             </div>
-            <div class="infoByTask2">
+            <div class="infoByTask2" @click="openModal">
               <p>Title of the task X</p>
             </div>
-            <div class="infoByTask2">
+            <div class="infoByTask2" @click="openModal">
               <p>Title of the task Y</p>
             </div>
           </div>
@@ -87,13 +87,13 @@ const router = useRouter();
                 +
               </button>
             </div>
-            <div class="infoByTask3">
+            <div class="infoByTask3" @click="openModal">
               <p>Title of the task A</p>
             </div>
-            <div class="infoByTask3">
+            <div class="infoByTask3" @click="openModal">
               <p>Title of the task B</p>
             </div>
-            <div class="infoByTask3">
+            <div class="infoByTask3" @click="openModal">
               <p>Title of the task C</p>
             </div>
           </div>
