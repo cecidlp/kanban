@@ -42,7 +42,7 @@
                   <div>
                     <label for="titleTask"><b>Title</b></label>
                   </div>
-                  <textarea name="titleTask" id="titleTaskNew" cols="40" rows="3" placeholder="Enter the name of the new task"></textarea>
+                  <textarea id="titleTaskNew" name="titleTask" cols="40" rows="3" placeholder="Enter the name of the new task" />
                   <div>
                     <button type="button" @click="validateNew">Save</button>
                   <button type="button" @click="cancelAddNewTask">Cancel</button>
@@ -50,10 +50,10 @@
                 </form>
               </div>
             </div>
-            <div v-for="singleNewTask in taskStatusTodo()" v-bind:key="singleNewTask.title" class="infoByTask1">
+            <div v-for="singleNewTask in taskStatusTodo()" :key="singleNewTask.title" class="infoByTask1" @click="openModal">
               <div class="infoByTask1">
-              <p>{{singleNewTask.title}}</p>
-            </div>
+                <p>{{ singleNewTask.title }}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -72,7 +72,7 @@
                   <div>
                     <label for="titleTask"><b>Title</b></label>
                   </div>
-                  <textarea name="titleTask" id="titleTaskProgress" cols="40" rows="3" placeholder="Enter the name of the new task in progress"></textarea>
+                  <textarea id="titleTaskProgress" name="titleTask" cols="40" rows="3" placeholder="Enter the name of the new task in progress" />
                   <div>
                     <button type="button" @click="validateInProgress">Save</button>
                   <button type="button" @click="cancelTaskInProgress">Cancel</button>
@@ -82,8 +82,8 @@
             </div>
             <div v-for="singleProgressTask in taskStatusInProgress()" v-bind:key="singleProgressTask.title" class="infoByTask2">
               <div class="infoByTask2">
-              <p>{{singleProgressTask.title}}</p>
-            </div>
+                <p>{{ singleProgressTask.title }}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -102,7 +102,7 @@
                   <div>
                     <label for="titleTask"><b>Title</b></label>
                   </div>
-                  <textarea name="titleTask" id="titleTaskDone" cols="40" rows="3" placeholder="Enter the name of the new task finished"></textarea>
+                  <textarea id="titleTaskDone" name="titleTask" cols="40" rows="3" placeholder="Enter the name of the new task finished" />
                   <div>
                     <button type="button" @click="validateDone">Save</button>
                   <button type="button" @click="cancelTaskDone">Cancel</button>
@@ -112,7 +112,7 @@
             </div>
             <div v-for="singleDoneTask in taskStatusDone()" v-bind:key="singleDoneTask.title" class="infoByTask3">
               <div class="infoByTask3">
-                <p>{{singleDoneTask.title}}</p>
+                <p>{{ singleDoneTask.title }}</p>
               </div>
             </div>
           </div>
@@ -375,14 +375,17 @@ p {
 
 @media only screen and (max-width: 700px) {
 
+  h1 {
+    margin-bottom: 4%;
+  }
   .mainMenu {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     align-content: space-between;
-    margin-bottom: 5%;
+    margin-bottom: 10%;
   }
 
   .buttonsMenu {
@@ -390,9 +393,9 @@ p {
     border-radius: 8px;
     box-sizing: border-box;
     cursor: pointer;
-    font-size: 1rem;
     width: 30%;
     border: none;
+    margin-top: 3%;
   }
 
   .mainRow {
