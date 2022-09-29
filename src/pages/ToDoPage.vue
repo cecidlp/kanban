@@ -44,28 +44,10 @@
                   <div class="title">
                     <label for="titleTask"><b>Title</b></label>
                   </div>
-                  <textarea
-                    id="titleTaskNew"
-                    name="titleTask"
-                    cols="40"
-                    rows="3"
-                    placeholder="Enter the name of the new task"
-                  />
+                  <textarea id="titleTaskNew" name="titleTask" cols="40" rows="3" placeholder="Enter the name of the new task" />
                   <div class="buttons-div">
-                    <button
-                      class="button-add"
-                      type="button"
-                      @click="saveNewTask"
-                    >
-                      Save
-                    </button>
-                    <button
-                      class="button-cancel"
-                      type="button"
-                      @click="cancelAddNewTask"
-                    >
-                      Cancel
-                    </button>
+                    <button class="button-add" type="button" @click="validateNew">Save</button>
+                  <button class="button-cancel" type="button" @click="cancelAddNewTask">Cancel</button>
                   </div>
                 </form>
               </div>
@@ -99,29 +81,15 @@
                   <div class="title">
                     <label for="titleTask"><b>Title</b></label>
                   </div>
-                  <textarea
-                    id="titleTaskNew"
-                    name="titleTask"
-                    cols="40"
-                    rows="3"
-                    placeholder="Enter the name of the new task in progress"
-                  />
+                  <textarea id="titleTaskProgress" name="titleTask" cols="40" rows="3" placeholder="Enter the name of the new task in progress" />
                   <div class="buttons-div">
-                    <button type="button" class="button-add" @click="saveProgressTask">
-                      Save
-                    </button>
-                    <button type="button" class="button-cancel" @click="cancelTaskInProgress">
-                      Cancel
-                    </button>
+                    <button class="button-add" type="button" @click="validateInProgress">Save</button>
+                  <button class="button-cancel" type="button" @click="cancelTaskInProgress">Cancel</button>
                   </div>
                 </form>
               </div>
             </div>
-            <div
-              v-for="singleProgressTask in taskStatusInProgress()"
-              :key="singleProgressTask.title"
-              class="infoByTask2"
-            >
+            <div v-for="singleProgressTask in taskStatusInProgress()" v-bind:key="singleProgressTask.title" class="infoByTask2">
               <div>
                 <p>{{ singleProgressTask.title }}</p>
               </div>
@@ -145,29 +113,15 @@
                   <div class="title">
                     <label for="titleTask"><b>Title</b></label>
                   </div>
-                  <textarea
-                    id="titleTaskNew"
-                    name="titleTask"
-                    cols="40"
-                    rows="3"
-                    placeholder="Enter the name of the new task finished"
-                  />
+                  <textarea id="titleTaskDone" name="titleTask" cols="40" rows="3" placeholder="Enter the name of the new task finished" />
                   <div class="buttons-div">
-                    <button class="button-add" type="button" @click="saveDoneTask">
-                      Save
-                    </button>
-                    <button class="button-cancel" type="button" @click="cancelTaskDone">
-                      Cancel
-                    </button>
+                    <button class="button-add" type="button" @click="validateDone">Save</button>
+                  <button class="button-cancel" type="button" @click="cancelTaskDone">Cancel</button>
                   </div>
                 </form>
               </div>
             </div>
-            <div
-              v-for="singleDoneTask in taskStatusDone()"
-              :key="singleDoneTask.title"
-              class="infoByTask3"
-            >
+            <div v-for="singleDoneTask in taskStatusDone()" v-bind:key="singleDoneTask.title" class="infoByTask3">
               <div>
                 <p>{{ singleDoneTask.title }}</p>
               </div>
@@ -201,7 +155,6 @@ export default {
     /** NEW TASK MODAL  */
     addNewTask() {
       document.getElementById('newTaskToAdd').style.display = 'block';
-      console.log('Llamando a método Add New task');
     },
     cancelAddNewTask() {
       document.getElementById('newTaskToAdd').style.display = 'none';
@@ -213,12 +166,18 @@ export default {
       this.taskStatusTodo();
       document.getElementById('newTaskToAdd').style.display = 'none';
       document.getElementById('titleTaskNew').value = '';
-      console.log('LISTADO NEW TASKS');
-      console.log(this.tasks);
     },
     taskStatusTodo() {
       const statusTodo = this.tasks.filter((task) => task.status === 1);
       return statusTodo;
+    },
+    validateNew() {
+      const nameNewTask = document.getElementById('titleTaskNew').value;
+      if (nameNewTask === null || nameNewTask === '') {
+        alert('MENSAJE DE ERROR: Hace un Overlay en la ventana. Quitar el alert');
+      } else {
+        this.saveNewTask();
+      }
     },
     /** IN PROGRESS MODAL  */
     addTaskInProgress() {
@@ -234,12 +193,18 @@ export default {
       this.taskStatusInProgress();
       document.getElementById('inProgressTaskToAdd').style.display = 'none';
       document.getElementById('titleTaskProgress').value = '';
-      console.log('LISTADO PROGRESS TASKS');
-      console.log(this.tasks);
     },
     taskStatusInProgress() {
       const statusInProgress = this.tasks.filter((task) => task.status === 2);
       return statusInProgress;
+    },
+    validateInProgress() {
+      const nameProgressTask = document.getElementById('titleTaskProgress').value;
+      if (nameProgressTask === null || nameProgressTask === '') {
+        alert('MENSAJE DE ERROR: Hace un Overlay en la ventana. Quitar el alert');
+      } else {
+        this.saveProgressTask();
+      }
     },
     /** DONE  MODAL  */
     addTaskDone() {
@@ -255,13 +220,20 @@ export default {
       this.taskStatusDone();
       document.getElementById('doneTaskToAdd').style.display = 'none';
       document.getElementById('titleTaskDone').value = '';
-      console.log('LISTADO DONE TASKS');
-      console.log(this.tasks);
     },
     taskStatusDone() {
       const statusDone = this.tasks.filter((task) => task.status === 3);
       return statusDone;
     },
+    validateDone() {
+      const nameDoneTask = document.getElementById('titleTaskDone').value;
+      if (nameDoneTask === null || nameDoneTask === '') {
+        alert('MENSAJE DE ERROR: Hace un Overlay en la ventana. Quitar el alert');
+      } else {
+        this.saveDoneTask();
+      }
+    },
+
   },
 };
 </script>
