@@ -50,10 +50,11 @@
                 </form>
               </div>
             </div>
-            <div v-for="singleNewTask in taskStatusTodo()" v-bind:key="singleNewTask.title" class="infoByTask1" @click="openModal">
-              <div class="infoByTask1">
-              <p>{{singleNewTask.title}}</p>
+            <div class="infoByTask1"@click="openModal">
+              <p>Title of the task 4</p>
             </div>
+            <div class="infoByTask1"@click="openModal">
+              <p>Title of the task 5</p>
             </div>
           </div>
         </div>
