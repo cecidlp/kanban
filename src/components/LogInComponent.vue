@@ -9,11 +9,13 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
 
 import Button from './actionables/ButtonComponent.vue';
 import Input from './actionables/FormInputComponent.vue';
+
+import { logInSupabase } from '../userAuth.jsx';
 
 export default {
   components: {
@@ -23,16 +25,26 @@ export default {
   setup() {
     const router = useRouter();
 
-    function logIn() {
-      router.push({
-        name: 'todos',
-      });
-    }
-
-    const form = ref({
+    const form = reactive({
       email: '',
       password: '',
     });
+
+    async function logIn() {
+      const { error } = await logInSupabase(form.email, form.password);
+
+      if (error !== null) {
+        // TODO: Better error handling
+        console.log(error);
+        alert(error.message);
+        return false;
+      }
+      router.push({
+        name: 'todos',
+      });
+
+      return true;
+    }
 
     return {
       logIn,
