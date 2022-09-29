@@ -10,6 +10,7 @@
 
 <script>
 import { reactive } from 'vue';
+
 import { useRouter } from 'vue-router';
 
 import Button from './actionables/ButtonComponent.vue';
