@@ -17,6 +17,8 @@
         "@supabase/supabase-js": "^1.35.7",
         "@vitejs/plugin-vue": "^2.2.0",
         "axios": "^0.27.2",
+        "eslint-plugin-prettier": "^4.2.1",
+        "prettier-eslint": "^15.0.1",
         "vite": "^2.8.0",
         "vite-plugin-eslint": "^1.8.1",
         "vue": "^3.2.25",
