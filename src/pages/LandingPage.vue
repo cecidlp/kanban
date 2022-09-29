@@ -1,7 +1,7 @@
 <script setup>
 import { useRouter } from 'vue-router';
 
-import ButtonComponent from '../components/ButtonComponent.vue';
+import Button from '../components/actionables/ButtonComponent.vue';
 
 const router = useRouter();
 
@@ -23,7 +23,7 @@ function goToSignIn() {
     <span>
       Let us help you!
     </span>
-    <ButtonComponent class="btn" button-text="Get Started" @click="goToSignIn" />
+    <Button class="btn" text="Get Started" @click="goToSignIn" />
   </div>
 </template>
 
@@ -35,22 +35,13 @@ function goToSignIn() {
     flex-direction: column;
     align-items: center;
   }
-  h1 {
-    color: rgb(5, 15, 67);
-    font-weight: 700;
-    font-size: 24px;
-  }
+
   img {
     width: 100%;
     margin-bottom: 1rem;
   }
   span {
     display: block;
-    color: rgb(37, 82, 82);
-    font-family: Roboto;
-    font-size: 15px;
-    letter-spacing: 0px;
-    line-height: 20px;
     text-align: center;
   }
   .btn {

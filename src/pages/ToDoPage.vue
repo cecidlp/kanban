@@ -1,10 +1,4 @@
-<script setup>
-import { useRouter } from 'vue-router';
-
-// eslint-disable-next-line no-unused-vars
-const router = useRouter();
-</script>
-
+<!-- eslint-disable no-console -->
 <template>
   <div class="mainContainer">
     <div>
@@ -32,30 +26,38 @@ const router = useRouter();
     </div>
     <div class="groupStatus">
       <div class="mainRow">
+        <!--NEW TASKS-->
         <div class="column1">
           <div class="rowByGroup">
             <div class="headerStatusGroup">
               <h2 class="titleTask">
                 To Do
               </h2>
-              <button class="addTask">
+              <button class="addTask" @click="addNewTask">
                 +
               </button>
+              <div id="newTaskToAdd" class="form-popup">
+                <form action="" class="form-container">
+                  <h3>Add New Task TO DO</h3>
+                  <div>
+                    <label for="titleTask"><b>Title</b></label>
+                  </div>
+                  <textarea id="titleTaskNew" name="titleTask" cols="40" rows="3" placeholder="Enter the name of the new task" />
+                  <div>
+                    <button type="button" @click="saveNewTask">
+                      Save
+                    </button>
+                    <button type="button" @click="cancelAddNewTask">
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
-            <div class="infoByTask1" @click="openModal">
-              <p>Title of the task 1</p>
-            </div>
-            <div class="infoByTask1"@click="openModal">
-              <p>Title of the task 2</p>
-            </div>
-            <div class="infoByTask1"@click="openModal">
-              <p>Title of the task 3</p>
-            </div>
-            <div class="infoByTask1"@click="openModal">
-              <p>Title of the task 4</p>
-            </div>
-            <div class="infoByTask1"@click="openModal">
-              <p>Title of the task 5</p>
+            <div v-for="singleNewTask in taskStatusTodo()" :key="singleNewTask.title" class="infoByTask1" @click="openModal">
+              <div class="infoByTask1">
+                <p>{{ singleNewTask.title }}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -65,15 +67,31 @@ const router = useRouter();
               <h2 class="titleTask">
                 In progress
               </h2>
-              <button class="addTask">
+              <button class="addTask" @click="addTaskInProgress">
                 +
               </button>
+              <div id="inProgressTaskToAdd" class="form-popup">
+                <form action="" class="form-container">
+                  <h3>Add New Task IN PROGRESS</h3>
+                  <div>
+                    <label for="titleTask"><b>Title</b></label>
+                  </div>
+                  <textarea id="titleTaskProgress" name="titleTask" cols="40" rows="3" placeholder="Enter the name of the new task in progress" />
+                  <div>
+                    <button type="button" @click="saveProgressTask">
+                      Save
+                    </button>
+                    <button type="button" @click="cancelTaskInProgress">
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
-            <div class="infoByTask2" @click="openModal">
-              <p>Title of the task X</p>
-            </div>
-            <div class="infoByTask2" @click="openModal">
-              <p>Title of the task Y</p>
+            <div v-for="singleProgressTask in taskStatusInProgress()" :key="singleProgressTask.title" class="infoByTask2">
+              <div class="infoByTask2">
+                <p>{{ singleProgressTask.title }}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -83,18 +101,31 @@ const router = useRouter();
               <h2 class="titleTask">
                 Done
               </h2>
-              <button class="addTask">
+              <button class="addTask" @click="addTaskDone">
                 +
               </button>
+              <div id="doneTaskToAdd" class="form-popup">
+                <form action="" class="form-container">
+                  <h3>Add New Task DONE</h3>
+                  <div>
+                    <label for="titleTask"><b>Title</b></label>
+                  </div>
+                  <textarea id="titleTaskDone" name="titleTask" cols="40" rows="3" placeholder="Enter the name of the new task finished" />
+                  <div>
+                    <button type="button" @click="saveDoneTask">
+                      Save
+                    </button>
+                    <button type="button" @click="cancelTaskDone">
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
-            <div class="infoByTask3" @click="openModal">
-              <p>Title of the task A</p>
-            </div>
-            <div class="infoByTask3" @click="openModal">
-              <p>Title of the task B</p>
-            </div>
-            <div class="infoByTask3" @click="openModal">
-              <p>Title of the task C</p>
+            <div v-for="singleDoneTask in taskStatusDone()" :key="singleDoneTask.title" class="infoByTask3">
+              <div class="infoByTask3">
+                <p>{{ singleDoneTask.title }}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -103,12 +134,103 @@ const router = useRouter();
   </div>
 </template>
 
+<script>
+
+export default {
+  data() {
+    return {
+      tasks: [
+        { title: 'Title of the task 1', status: 1 },
+        { title: 'Title of the task 2', status: 1 },
+        { title: 'Title of the task 3', status: 2 },
+        { title: 'Title of the task 4', status: 2 },
+        { title: 'Title of the task 5', status: 3 },
+        { title: 'Title of the task 6', status: 2 },
+      ],
+      newTaskName: '',
+      inProgressTaskName: '',
+      doneTaskName: '',
+    };
+  },
+  computed: {
+  },
+  methods: {
+    /** NEW TASK MODAL  */
+    addNewTask() {
+      document.getElementById('newTaskToAdd').style.display = 'block';
+      console.log('Llamando a método Add New task');
+    },
+    cancelAddNewTask() {
+      document.getElementById('newTaskToAdd').style.display = 'none';
+      document.getElementById('titleTaskNew').value = '';
+    },
+    saveNewTask() {
+      this.newTaskName = document.getElementById('titleTaskNew').value;
+      this.tasks.push({ title: this.newTaskName, status: 1 });
+      this.taskStatusTodo();
+      document.getElementById('newTaskToAdd').style.display = 'none';
+      document.getElementById('titleTaskNew').value = '';
+      console.log('LISTADO NEW TASKS');
+      console.log(this.tasks);
+    },
+    taskStatusTodo() {
+      const statusTodo = this.tasks.filter((task) => task.status === 1);
+      return statusTodo;
+    },
+    /** IN PROGRESS MODAL  */
+    addTaskInProgress() {
+      document.getElementById('inProgressTaskToAdd').style.display = 'block';
+    },
+    cancelTaskInProgress() {
+      document.getElementById('inProgressTaskToAdd').style.display = 'none';
+      document.getElementById('titleTaskProgress').value = '';
+    },
+    saveProgressTask() {
+      this.inProgressTaskName = document.getElementById('titleTaskProgress').value;
+      this.tasks.push({ title: this.inProgressTaskName, status: 2 });
+      this.taskStatusInProgress();
+      document.getElementById('inProgressTaskToAdd').style.display = 'none';
+      document.getElementById('titleTaskProgress').value = '';
+      console.log('LISTADO PROGRESS TASKS');
+      console.log(this.tasks);
+    },
+    taskStatusInProgress() {
+      const statusInProgress = this.tasks.filter((task) => task.status === 2);
+      return statusInProgress;
+    },
+    /** DONE  MODAL  */
+    addTaskDone() {
+      document.getElementById('doneTaskToAdd').style.display = 'block';
+    },
+    cancelTaskDone() {
+      document.getElementById('doneTaskToAdd').style.display = 'none';
+      document.getElementById('titleTaskDone').value = '';
+    },
+    saveDoneTask() {
+      this.doneTaskName = document.getElementById('titleTaskDone').value;
+      this.tasks.push({ title: this.doneTaskName, status: 3 });
+      this.taskStatusDone();
+      document.getElementById('doneTaskToAdd').style.display = 'none';
+      document.getElementById('titleTaskDone').value = '';
+      console.log('LISTADO DONE TASKS');
+      console.log(this.tasks);
+    },
+    taskStatusDone() {
+      const statusDone = this.tasks.filter((task) => task.status === 3);
+      return statusDone;
+    },
+
+  },
+};
+</script>
+
 <style scoped>
 h1 {
   color: #050f43;
   margin-bottom: 2rem;
   margin-top: 2rem;
 }
+
 .mainContainer {
   background-color: white;
   margin: 10%;
@@ -142,18 +264,21 @@ h1 {
   padding-top: 1rem;
   align-items: flex-start;
 }
+
 .column1 {
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   text-align: center;
   width: 30%;
 }
+
 .column2 {
   width: 30%;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   text-align: center;
 }
+
 .column3 {
   width: 30%;
   border-radius: 15px;
@@ -232,36 +357,54 @@ p {
   font-size: 0.9rem;
 }
 
+/** MODAL Add New Task */
+.form-popup {
+  display: none;
+  border: 3px solid red;
+  background-color: blue;
+  z-index: 9;
+  margin-left: 10%;
+  margin-top: 20%;
+
+}
+
 @media only screen and (max-width: 700px) {
 
+  h1 {
+    margin-bottom: 4%;
+  }
   .mainMenu {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     align-content: space-between;
-    margin-bottom: 5%;
-
+    margin-bottom: 10%;
   }
+
   .buttonsMenu {
     background-color: var(--component-three);
     border-radius: 8px;
     box-sizing: border-box;
     cursor: pointer;
-    font-size: 1rem;
     width: 30%;
     border: none;
-}
-.mainRow {
+    margin-top: 3%;
+  }
+
+  .mainRow {
     display: flex;
     height: 100%;
     padding-top: 1rem;
     flex-direction: column;
-}
-.column1, .column2, .column3 {
-  width: 100%;
-  margin-bottom: 10%;
-}
+  }
+
+  .column1,
+  .column2,
+  .column3 {
+    width: 100%;
+    margin-bottom: 10%;
+  }
 }
 </style>
