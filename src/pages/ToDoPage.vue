@@ -38,24 +38,45 @@
               </button>
               <div id="newTaskToAdd" class="form-popup">
                 <form action="" class="form-container">
-                  <h3>Add New Task TO DO</h3>
-                  <div>
+                  <h3 class="title-newtask">
+                    Add New Task TO DO
+                  </h3>
+                  <div class="title">
                     <label for="titleTask"><b>Title</b></label>
                   </div>
-                  <textarea id="titleTaskNew" name="titleTask" cols="40" rows="3" placeholder="Enter the name of the new task" />
-                  <div>
-                    <button type="button" @click="saveNewTask">
+                  <textarea
+                    id="titleTaskNew"
+                    name="titleTask"
+                    cols="40"
+                    rows="3"
+                    placeholder="Enter the name of the new task"
+                  />
+                  <div class="buttons-div">
+                    <button
+                      class="button-add"
+                      type="button"
+                      @click="saveNewTask"
+                    >
                       Save
                     </button>
-                    <button type="button" @click="cancelAddNewTask">
+                    <button
+                      class="button-cancel"
+                      type="button"
+                      @click="cancelAddNewTask"
+                    >
                       Cancel
                     </button>
                   </div>
                 </form>
               </div>
             </div>
-            <div v-for="singleNewTask in taskStatusTodo()" :key="singleNewTask.title" class="infoByTask1" @click="openModal">
-              <div class="infoByTask1">
+            <div
+              v-for="singleNewTask in taskStatusTodo()"
+              :key="singleNewTask.title"
+              class="infoByTask1"
+              @click="openModal"
+            >
+              <div>
                 <p>{{ singleNewTask.title }}</p>
               </div>
             </div>
@@ -72,24 +93,36 @@
               </button>
               <div id="inProgressTaskToAdd" class="form-popup">
                 <form action="" class="form-container">
-                  <h3>Add New Task IN PROGRESS</h3>
-                  <div>
+                  <h3 class="title-newtask">
+                    Add New Task IN PROGRESS
+                  </h3>
+                  <div class="title">
                     <label for="titleTask"><b>Title</b></label>
                   </div>
-                  <textarea id="titleTaskProgress" name="titleTask" cols="40" rows="3" placeholder="Enter the name of the new task in progress" />
-                  <div>
-                    <button type="button" @click="saveProgressTask">
+                  <textarea
+                    id="titleTaskNew"
+                    name="titleTask"
+                    cols="40"
+                    rows="3"
+                    placeholder="Enter the name of the new task in progress"
+                  />
+                  <div class="buttons-div">
+                    <button type="button" class="button-add" @click="saveProgressTask">
                       Save
                     </button>
-                    <button type="button" @click="cancelTaskInProgress">
+                    <button type="button" class="button-cancel" @click="cancelTaskInProgress">
                       Cancel
                     </button>
                   </div>
                 </form>
               </div>
             </div>
-            <div v-for="singleProgressTask in taskStatusInProgress()" :key="singleProgressTask.title" class="infoByTask2">
-              <div class="infoByTask2">
+            <div
+              v-for="singleProgressTask in taskStatusInProgress()"
+              :key="singleProgressTask.title"
+              class="infoByTask2"
+            >
+              <div>
                 <p>{{ singleProgressTask.title }}</p>
               </div>
             </div>
@@ -106,24 +139,36 @@
               </button>
               <div id="doneTaskToAdd" class="form-popup">
                 <form action="" class="form-container">
-                  <h3>Add New Task DONE</h3>
-                  <div>
+                  <h3 class="title-newtask">
+                    Add New Task DONE
+                  </h3>
+                  <div class="title">
                     <label for="titleTask"><b>Title</b></label>
                   </div>
-                  <textarea id="titleTaskDone" name="titleTask" cols="40" rows="3" placeholder="Enter the name of the new task finished" />
-                  <div>
-                    <button type="button" @click="saveDoneTask">
+                  <textarea
+                    id="titleTaskNew"
+                    name="titleTask"
+                    cols="40"
+                    rows="3"
+                    placeholder="Enter the name of the new task finished"
+                  />
+                  <div class="buttons-div">
+                    <button class="button-add" type="button" @click="saveDoneTask">
                       Save
                     </button>
-                    <button type="button" @click="cancelTaskDone">
+                    <button class="button-cancel" type="button" @click="cancelTaskDone">
                       Cancel
                     </button>
                   </div>
                 </form>
               </div>
             </div>
-            <div v-for="singleDoneTask in taskStatusDone()" :key="singleDoneTask.title" class="infoByTask3">
-              <div class="infoByTask3">
+            <div
+              v-for="singleDoneTask in taskStatusDone()"
+              :key="singleDoneTask.title"
+              class="infoByTask3"
+            >
+              <div>
                 <p>{{ singleDoneTask.title }}</p>
               </div>
             </div>
@@ -135,7 +180,6 @@
 </template>
 
 <script>
-
 export default {
   data() {
     return {
@@ -152,8 +196,7 @@ export default {
       doneTaskName: '',
     };
   },
-  computed: {
-  },
+  computed: {},
   methods: {
     /** NEW TASK MODAL  */
     addNewTask() {
@@ -219,7 +262,6 @@ export default {
       const statusDone = this.tasks.filter((task) => task.status === 3);
       return statusDone;
     },
-
   },
 };
 </script>
@@ -238,8 +280,7 @@ h1 {
 
 .buttonsMenu {
   align-items: center;
-  background-color: var(--component-three);
-  border-radius: 8px;
+  background-color: white;
   box-sizing: border-box;
   cursor: pointer;
   display: flex;
@@ -247,6 +288,11 @@ h1 {
   width: 15%;
   justify-content: center;
   border: none;
+  border-bottom: 2px solid grey;
+}
+
+.buttonsMenu:hover {
+ border-bottom: 2px solid var(--component-three);
 }
 
 .mainMenu {
@@ -267,7 +313,6 @@ h1 {
 
 .column1 {
   border-radius: 15px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   text-align: center;
   width: 30%;
 }
@@ -275,14 +320,12 @@ h1 {
 .column2 {
   width: 30%;
   border-radius: 15px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   text-align: center;
 }
 
 .column3 {
   width: 30%;
   border-radius: 15px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   text-align: center;
 }
 
@@ -310,7 +353,8 @@ h1 {
   margin: 4%;
   border-radius: 1rem;
   background-color: var(--component-one);
-  padding-left: 4%;
+  padding-left: 8%;
+  border-bottom: 1px solid grey;
 }
 
 .infoByTask2 {
@@ -321,7 +365,8 @@ h1 {
   margin: 4%;
   border-radius: 1rem;
   background-color: var(--component-two);
-  padding-left: 4%;
+  padding-left: 8%;
+  border-bottom: 1px solid grey;
 }
 
 .infoByTask3 {
@@ -332,12 +377,13 @@ h1 {
   margin: 4%;
   border-radius: 1rem;
   background-color: #7ba8ff;
-  padding-left: 4%;
+  padding-left: 8%;
+  border-bottom: 1px solid grey;
 }
 
 .addTask {
   margin-right: 2%;
-  background-color: var(--component-three);
+  background-color: whitesmoke;
   border-radius: 50%;
   cursor: pointer;
   font-size: 1rem;
@@ -360,16 +406,70 @@ p {
 /** MODAL Add New Task */
 .form-popup {
   display: none;
-  border: 3px solid red;
-  background-color: blue;
+  border-radius: 8px;
+  background-color: white;
   z-index: 9;
   margin-left: 10%;
-  margin-top: 20%;
+  margin-top: 40%;
+  border: 1px solid black;
+}
+#titleTaskNew {
+  width: 90%;
+  height: 5rem;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
 
+.form-container {
+  width: 17rem;
+  height: 12rem;
+}
+
+.title-newtask {
+  font-size: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: var(--subtitle-landing);
+}
+
+.title {
+  font-size: 1rem;
+  margin-bottom: 2%;
+  color: var(--subtitle-landing);
+}
+
+.button-add {
+  align-items: center;
+  background-color: whitesmoke;
+  border-radius: 8px;
+  margin-top: 3%;
+  border: none;
+  border-bottom: 2px solid #B6C197;
+    padding: 2%;
+}
+
+.button-cancel {
+  align-items: center;
+  background-color: whitesmoke;
+  border-radius: 8px;
+  margin-top: 3%;
+  border: none;
+  border-bottom: 2px solid #BD6B6A;
+    padding: 2%;
+}
+
+.buttons-div {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 @media only screen and (max-width: 700px) {
-
   h1 {
     margin-bottom: 4%;
   }
@@ -384,13 +484,19 @@ p {
   }
 
   .buttonsMenu {
-    background-color: var(--component-three);
-    border-radius: 8px;
     box-sizing: border-box;
     cursor: pointer;
     width: 30%;
     border: none;
     margin-top: 3%;
+    align-items: center;
+  background-color: white;
+  border: none;
+  border-bottom: 2px solid grey;
+  }
+
+  .buttonsmenu:active {
+    border-bottom: 2px solid var(--component-three);
   }
 
   .mainRow {
