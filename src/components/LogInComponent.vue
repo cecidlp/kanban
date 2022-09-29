@@ -35,7 +35,6 @@ export default {
 
       if (error !== null) {
         // TODO: Better error handling
-        console.log(error);
         alert(error.message);
         return false;
       }
