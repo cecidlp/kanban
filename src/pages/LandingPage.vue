@@ -10,7 +10,6 @@ function goToSignIn() {
     name: 'signin',
   });
 }
-
 </script>
 
 <template>
@@ -28,31 +27,31 @@ function goToSignIn() {
 </template>
 
 <style scoped>
-  div {
-    margin: 4rem 2rem;
+div {
+  margin: 4rem 2rem;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+img {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+span {
+  display: block;
+  text-align: center;
+}
+.btn {
+  width: 14rem;
+
+  margin: 2rem 0;
+  text-align: center;
+}
+@media only screen and (min-width: 700px) {
   img {
-    width: 100%;
-    margin-bottom: 1rem;
+    width: 50rem;
   }
-  span {
-    display: block;
-    text-align: center;
-  }
-  .btn {
-    width: 14rem;
-
-    margin: 2rem 0;
-    text-align: center;
-  }
-  @media only screen and (min-width: 700px) {
-    img {
-      width: 50rem;
-    }
-  }
+}
 </style>
