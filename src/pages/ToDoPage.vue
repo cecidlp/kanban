@@ -44,7 +44,7 @@
                   </div>
                   <textarea name="titleTask" id="titleTaskNew" cols="40" rows="3" placeholder="Enter the name of the new task"></textarea>
                   <div>
-                    <button type="button" @click="saveNewTask">Save</button>
+                    <button type="button" @click="validateNew">Save</button>
                   <button type="button" @click="cancelAddNewTask">Cancel</button>
                   </div>
                 </form>
@@ -74,7 +74,7 @@
                   </div>
                   <textarea name="titleTask" id="titleTaskProgress" cols="40" rows="3" placeholder="Enter the name of the new task in progress"></textarea>
                   <div>
-                    <button type="button" @click="saveProgressTask">Save</button>
+                    <button type="button" @click="validateInProgress">Save</button>
                   <button type="button" @click="cancelTaskInProgress">Cancel</button>
                   </div>
                 </form>
@@ -104,7 +104,7 @@
                   </div>
                   <textarea name="titleTask" id="titleTaskDone" cols="40" rows="3" placeholder="Enter the name of the new task finished"></textarea>
                   <div>
-                    <button type="button" @click="saveDoneTask">Save</button>
+                    <button type="button" @click="validateDone">Save</button>
                   <button type="button" @click="cancelTaskDone">Cancel</button>
                   </div>
                 </form>
@@ -146,7 +146,6 @@ export default {
     /** NEW TASK MODAL  */
     addNewTask() {
       document.getElementById('newTaskToAdd').style.display = 'block';
-      console.log('Llamando a método Add New task');
     },
     cancelAddNewTask() {
       document.getElementById('newTaskToAdd').style.display = 'none';
@@ -158,12 +157,18 @@ export default {
       this.taskStatusTodo();
       document.getElementById('newTaskToAdd').style.display = 'none';
       document.getElementById('titleTaskNew').value = '';
-      console.log('LISTADO NEW TASKS');
-      console.log(this.tasks);
     },
     taskStatusTodo() {
       const statusTodo = this.tasks.filter((task) => task.status === 1);
       return statusTodo;
+    },
+    validateNew() {
+      const nameNewTask = document.getElementById('titleTaskNew').value;
+      if (nameNewTask === null || nameNewTask === '') {
+        alert('MENSAJE DE ERROR: Hace un Overlay en la ventana. Quitar el alert');
+      } else {
+        this.saveNewTask();
+      }
     },
     /** IN PROGRESS MODAL  */
     addTaskInProgress() {
@@ -179,12 +184,18 @@ export default {
       this.taskStatusInProgress();
       document.getElementById('inProgressTaskToAdd').style.display = 'none';
       document.getElementById('titleTaskProgress').value = '';
-      console.log('LISTADO PROGRESS TASKS');
-      console.log(this.tasks);
     },
     taskStatusInProgress() {
       const statusInProgress = this.tasks.filter((task) => task.status === 2);
       return statusInProgress;
+    },
+    validateInProgress() {
+      const nameProgressTask = document.getElementById('titleTaskProgress').value;
+      if (nameProgressTask === null || nameProgressTask === '') {
+        alert('MENSAJE DE ERROR: Hace un Overlay en la ventana. Quitar el alert');
+      } else {
+        this.saveProgressTask();
+      }
     },
     /** DONE  MODAL  */
     addTaskDone() {
@@ -200,12 +211,18 @@ export default {
       this.taskStatusDone();
       document.getElementById('doneTaskToAdd').style.display = 'none';
       document.getElementById('titleTaskDone').value = '';
-      console.log('LISTADO DONE TASKS');
-      console.log(this.tasks);
     },
     taskStatusDone() {
       const statusDone = this.tasks.filter((task) => task.status === 3);
       return statusDone;
+    },
+    validateDone() {
+      const nameDoneTask = document.getElementById('titleTaskDone').value;
+      if (nameDoneTask === null || nameDoneTask === '') {
+        alert('MENSAJE DE ERROR: Hace un Overlay en la ventana. Quitar el alert');
+      } else {
+        this.saveDoneTask();
+      }
     },
 
   },
