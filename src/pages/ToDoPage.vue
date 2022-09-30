@@ -44,22 +44,42 @@
                   <div class="title">
                     <label for="titleTask"><b>Title</b></label>
                   </div>
-                  <textarea id="titleTaskNew" name="titleTask" cols="40" rows="3" placeholder="Enter the name of the new task" />
+                  <textarea id="titleTaskNew" name="titleTask" cols="40" rows="3"
+                    placeholder="Enter the name of the new task"/>
                   <div class="buttons-div">
                     <button class="button-add" type="button" @click="validateNew">Save</button>
-                  <button class="button-cancel" type="button" @click="cancelAddNewTask">Cancel</button>
+                    <button class="button-cancel" type="button" @click="cancelAddNewTask">Cancel</button>
                   </div>
                 </form>
               </div>
             </div>
-            <div
-              v-for="singleNewTask in taskStatusTodo()"
-              :key="singleNewTask.title"
-              class="infoByTask1"
-              @click="openModal"
-            >
+            <div v-for="(singleNewTask) in taskStatusTodo" :key="singleNewTask.id" class="infoByTask1"
+              >
               <div>
-                <p>{{ singleNewTask.title }}</p>
+                <p><a href="#" @click.prevent="openModal(singleNewTask)">{{ singleNewTask.title }}</a></p>
+              </div>
+              <div :id="'modifyTaskTodo' + singleNewTask.id" class="form-popup">
+                <form action="" class="form-container">
+                  <h3>
+                    UPDATE TASK
+                  </h3>
+                  <div class="updateTitle">
+                    <label for="titleTask"><b>Title</b></label>
+                    <input type="text" :value="singleNewTask.title">
+                  </div>
+                  <div>
+                    <h4>Change status of this task</h4>
+                    <select :id="'status_select'+ singleNewTask.id" @change="changeState(singleNewTask)">
+                      <option value="0">Change Status</option>
+                      <option v-if="singleNewTask.status != 1" value="1">To Do</option>
+                      <option value="2">In Progress</option>
+                      <option value="3">Done</option>
+                    </select>
+                  </div>
+                  <div>
+                    <button type="button" @click="closeModal(singleNewTask)" >Cancel</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -81,17 +101,40 @@
                   <div class="title">
                     <label for="titleTask"><b>Title</b></label>
                   </div>
-                  <textarea id="titleTaskProgress" name="titleTask" cols="40" rows="3" placeholder="Enter the name of the new task in progress" />
+                  <textarea id="titleTaskProgress" name="titleTask" cols="40" rows="3"
+                    placeholder="Enter the name of the new task in progress" />
                   <div class="buttons-div">
                     <button class="button-add" type="button" @click="validateInProgress">Save</button>
-                  <button class="button-cancel" type="button" @click="cancelTaskInProgress">Cancel</button>
+                    <button class="button-cancel" type="button" @click="cancelTaskInProgress">Cancel</button>
                   </div>
                 </form>
               </div>
             </div>
-            <div v-for="singleProgressTask in taskStatusInProgress()" v-bind:key="singleProgressTask.title" class="infoByTask2">
+            <div v-for="singleProgressTask in taskStatusInProgress" v-bind:key="singleProgressTask.title"
+              class="infoByTask2">
               <div>
-                <p>{{ singleProgressTask.title }}</p>
+                <p><a href="#" @click.prevent="openModal(singleProgressTask)">{{ singleProgressTask.title }}</a></p>
+              </div>
+              <div :id="'modifyTaskTodo' + singleProgressTask.id" class="form-popup">
+                <form action="" class="form-container">
+                  <h3>
+                    UPDATE TASK
+                  </h3>
+                  <div class="updateTitle">
+                    <label for="titleTask"><b>Title</b></label>
+                    <input type="text" :value="singleProgressTask.title">
+                  </div>
+                  <div>
+                    <h4>Change status of this task</h4>
+                    <select :id="'status_select'+ singleProgressTask.id" @change="changeState(singleProgressTask)">
+                      <option value="0">Change Status</option>
+                      <option value="1">To Do</option>
+                      <option v-if="singleProgressTask.status != 2" value="2">In Progress</option>
+                      <option value="3">Done</option>
+                    </select>
+                  </div>
+                  <button type="button" @click="closeModal(singleProgressTask)" >Cancel</button>
+                </form>
               </div>
             </div>
           </div>
@@ -113,17 +156,39 @@
                   <div class="title">
                     <label for="titleTask"><b>Title</b></label>
                   </div>
-                  <textarea id="titleTaskDone" name="titleTask" cols="40" rows="3" placeholder="Enter the name of the new task finished" />
+                  <textarea id="titleTaskDone" name="titleTask" cols="40" rows="3"
+                    placeholder="Enter the name of the new task finished" />
                   <div class="buttons-div">
                     <button class="button-add" type="button" @click="validateDone">Save</button>
-                  <button class="button-cancel" type="button" @click="cancelTaskDone">Cancel</button>
+                    <button class="button-cancel" type="button" @click="cancelTaskDone">Cancel</button>
                   </div>
                 </form>
               </div>
             </div>
-            <div v-for="singleDoneTask in taskStatusDone()" v-bind:key="singleDoneTask.title" class="infoByTask3">
+            <div v-for="singleDoneTask in taskStatusDone" v-bind:key="singleDoneTask.title" class="infoByTask3">
               <div>
-                <p>{{ singleDoneTask.title }}</p>
+                <p><a href="#" @click.prevent="openModal(singleDoneTask)">{{ singleDoneTask.title }}</a></p>
+              </div>
+              <div :id="'modifyTaskTodo' + singleDoneTask.id" class="form-popup">
+                <form action="" class="form-container">
+                  <h3>
+                    UPDATE TASK
+                  </h3>
+                  <div class="updateTitle">
+                    <label for="titleTask"><b>Title</b></label>
+                    <input type="text" :value="singleDoneTask.title">
+                  </div>
+                  <div>
+                    <h4>Change status of this task</h4>
+                    <select :id="'status_select'+ singleDoneTask.id" @change="changeState(singleDoneTask)">
+                      <option value="0">Change Status</option>
+                      <option value="1">To Do</option>
+                      <option value="2">In Progress</option>
+                      <option v-if="singleDoneTask.status != 3" value="3">Done</option>
+                    </select>
+                  </div>
+                  <button type="button" @click="closeModal(singleDoneTask)" >Cancel</button>
+                </form>
               </div>
             </div>
           </div>
@@ -134,23 +199,38 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
       tasks: [
-        { title: 'Title of the task 1', status: 1 },
-        { title: 'Title of the task 2', status: 1 },
-        { title: 'Title of the task 3', status: 2 },
-        { title: 'Title of the task 4', status: 2 },
-        { title: 'Title of the task 5', status: 3 },
-        { title: 'Title of the task 6', status: 2 },
+        { id: 1, title: 'Title of the task 1', status: 1 },
+        { id: 2, title: 'Title of the task 2', status: 1 },
+        { id: 3, title: 'Title of the task 3', status: 2 },
+        { id: 4, title: 'Title of the task 4', status: 2 },
+        { id: 5, title: 'Title of the task 5', status: 3 },
+        { id: 6, title: 'Title of the task 6', status: 2 },
       ],
       newTaskName: '',
       inProgressTaskName: '',
       doneTaskName: '',
+      selectedTodoTask: '',
     };
   },
-  computed: {},
+  computed: {
+    taskStatusTodo() {
+      const statusTodo = this.tasks.filter((task) => task.status === 1);
+      return statusTodo;
+    },
+    taskStatusInProgress() {
+      const statusInProgress = this.tasks.filter((task) => task.status === 2);
+      return statusInProgress;
+    },
+    taskStatusDone() {
+      const statusDone = this.tasks.filter((task) => task.status === 3);
+      return statusDone;
+    },
+  },
   methods: {
     /** NEW TASK MODAL  */
     addNewTask() {
@@ -162,14 +242,10 @@ export default {
     },
     saveNewTask() {
       this.newTaskName = document.getElementById('titleTaskNew').value;
-      this.tasks.push({ title: this.newTaskName, status: 1 });
-      this.taskStatusTodo();
+      this.tasks.push({ id: this.tasks.length + 1, title: this.newTaskName, status: 1 });
       document.getElementById('newTaskToAdd').style.display = 'none';
       document.getElementById('titleTaskNew').value = '';
-    },
-    taskStatusTodo() {
-      const statusTodo = this.tasks.filter((task) => task.status === 1);
-      return statusTodo;
+      console.log(this.tasks);
     },
     validateNew() {
       const nameNewTask = document.getElementById('titleTaskNew').value;
@@ -190,13 +266,8 @@ export default {
     saveProgressTask() {
       this.inProgressTaskName = document.getElementById('titleTaskProgress').value;
       this.tasks.push({ title: this.inProgressTaskName, status: 2 });
-      this.taskStatusInProgress();
       document.getElementById('inProgressTaskToAdd').style.display = 'none';
       document.getElementById('titleTaskProgress').value = '';
-    },
-    taskStatusInProgress() {
-      const statusInProgress = this.tasks.filter((task) => task.status === 2);
-      return statusInProgress;
     },
     validateInProgress() {
       const nameProgressTask = document.getElementById('titleTaskProgress').value;
@@ -217,13 +288,8 @@ export default {
     saveDoneTask() {
       this.doneTaskName = document.getElementById('titleTaskDone').value;
       this.tasks.push({ title: this.doneTaskName, status: 3 });
-      this.taskStatusDone();
       document.getElementById('doneTaskToAdd').style.display = 'none';
       document.getElementById('titleTaskDone').value = '';
-    },
-    taskStatusDone() {
-      const statusDone = this.tasks.filter((task) => task.status === 3);
-      return statusDone;
     },
     validateDone() {
       const nameDoneTask = document.getElementById('titleTaskDone').value;
@@ -233,7 +299,34 @@ export default {
         this.saveDoneTask();
       }
     },
+    openModal(taskCard) {
+      console.log('ABRIENDO');
+      const modalid = `modifyTaskTodo${taskCard.id}`;
+      document.getElementById(modalid).style.display = 'block';
+      this.selectedTodoTask = taskCard;
+      console.log(taskCard);
+    },
+    closeModal(taskCard) {
+      console.log('CERRADO');
+      const modalid = `modifyTaskTodo${taskCard.id}`;
+      document.getElementById(modalid).style.display = 'none';
+      this.selectedTodoTask = '';
+      console.log(taskCard);
+    },
+    changeState(taskCard) {
+      const selectedStatus = document.getElementById(`status_select${taskCard.id}`);
+      const valueStatus = selectedStatus.options[selectedStatus.selectedIndex].value;
+      console.log('value selected');
+      console.log(valueStatus);
 
+      // eslint-disable-next-line no-param-reassign
+      taskCard.status = parseInt(valueStatus, 10);
+
+      console.log('new status asign');
+      console.log(taskCard.status);
+
+      this.closeModal(taskCard);
+    },
   },
 };
 </script>
@@ -264,7 +357,7 @@ h1 {
 }
 
 .buttonsMenu:hover {
- border-bottom: 2px solid var(--component-three);
+  border-bottom: 2px solid var(--component-three);
 }
 
 .mainMenu {
@@ -385,6 +478,7 @@ p {
   margin-top: 40%;
   border: 1px solid black;
 }
+
 #titleTaskNew {
   width: 90%;
   height: 5rem;
@@ -422,7 +516,7 @@ p {
   margin-top: 3%;
   border: none;
   border-bottom: 2px solid #B6C197;
-    padding: 2%;
+  padding: 2%;
 }
 
 .button-cancel {
@@ -432,7 +526,7 @@ p {
   margin-top: 3%;
   border: none;
   border-bottom: 2px solid #BD6B6A;
-    padding: 2%;
+  padding: 2%;
 }
 
 .buttons-div {
@@ -441,10 +535,16 @@ p {
   align-items: center;
 }
 
+/* MODAL UPDATE TASK */
+.changedToProgress {
+  background-color: red;
+}
+
 @media only screen and (max-width: 700px) {
   h1 {
     margin-bottom: 4%;
   }
+
   .mainMenu {
     display: flex;
     align-items: flex-start;
@@ -462,9 +562,9 @@ p {
     border: none;
     margin-top: 3%;
     align-items: center;
-  background-color: white;
-  border: none;
-  border-bottom: 2px solid grey;
+    background-color: white;
+    border: none;
+    border-bottom: 2px solid grey;
   }
 
   .buttonsmenu:active {
