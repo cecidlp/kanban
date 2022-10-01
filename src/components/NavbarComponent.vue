@@ -1,15 +1,19 @@
 <template>
   <div class="navBar">
     <div>
-      <img class="logo" src="/src/assets/ironhack-logo.svg" alt="Ironhack logo" @click="goToLanding">
-      <font-awesome-icon v-if="!logOut" class="icon" icon="fa-solid fa-user" @click="goToLogIn" />
-      <font-awesome-icon v-else class="icon" icon="fa-solid fa-power-off" @click="goToLanding" />
+      <IronhackIcon class="icon ironhack-icon" @click="goToLanding" />
+      <UserIcon v-if="!logOut" class="icon account-icon" @click="goToLogIn" />
+      <LogOutIcon v-else class="icon account-icon" @click="goToLanding" />
     </div>
   </div>
 </template>
 
 <script setup>
 import { useRouter } from 'vue-router';
+
+import IronhackIcon from './icons/IronhackIcon.vue';
+import UserIcon from './icons/UserIcon.vue';
+import LogOutIcon from './icons/LogOutIcon.vue';
 
 const router = useRouter();
 
@@ -43,15 +47,15 @@ export default {
     justify-content: space-between;
     align-items: center;
   }
-  .logo {
+  .ironhack-icon {
     width: 2rem;
     height: 2rem;
     margin: 1rem;
     filter: hue-rotate(36deg);
   }
-  .icon {
+  .account-icon {
     color: #f2735b;
-    height: 1.3rem;
+    /* height: 1.3rem; */
     width: 2rem;
     margin: 1rem;
   }

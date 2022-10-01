@@ -8,6 +8,9 @@
         "airbnb-base",
         "plugin:vue/recommended"
     ],
+    "plugins": [
+        "prettier"
+    ],
     "rules": {
         "vue/max-attributes-per-line": "off",
         "max-len": "off",
