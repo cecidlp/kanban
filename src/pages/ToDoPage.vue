@@ -589,6 +589,14 @@ p {
   background-color: red;
 }
 
+.form-update {
+  width: 13rem;
+  height: 9rem;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
 @media only screen and (max-width: 700px) {
   h1 {
     margin-bottom: 4%;
