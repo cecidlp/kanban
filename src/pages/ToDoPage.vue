@@ -45,36 +45,56 @@
                     <label for="titleTask"><b>Title</b></label>
                   </div>
                   <textarea
-                    id="titleTaskNew" name="titleTask" cols="40" rows="3"
+                    id="titleTaskNew"
+                    name="titleTask"
+                    cols="40"
+                    rows="3"
                     placeholder="Enter the name of the new task"
                   />
                   <div class="buttons-div">
-                    <button class="button-add" type="button" @click="validateNew">
+                    <button
+                      class="button-add"
+                      type="button"
+                      @click="validateNew"
+                    >
                       Save
                     </button>
-                    <button class="button-cancel" type="button" @click="cancelAddNewTask">
+                    <button
+                      class="button-cancel"
+                      type="button"
+                      @click="cancelAddNewTask"
+                    >
                       Cancel
                     </button>
                   </div>
                 </form>
               </div>
             </div>
-            <div v-for="(singleNewTask) in taskStatusTodo" :key="singleNewTask.id" class="infoByTask1">
+            <div
+              v-for="singleNewTask in taskStatusTodo"
+              :key="singleNewTask.id"
+              class="infoByTask1"
+            >
               <div>
-                <p><a href="#" @click.prevent="openModal(singleNewTask)">{{ singleNewTask.title }}</a></p>
+                <p>
+                  <a href="#" @click.prevent="openModal(singleNewTask)">{{
+                    singleNewTask.title
+                  }}</a>
+                </p>
               </div>
               <div :id="'modifyTaskTodo' + singleNewTask.id" class="form-popup">
                 <form action="" class="form-update">
-                  <h3>
-                    UPDATE TASK
-                  </h3>
+                  <h3>UPDATE TASK</h3>
                   <div class="updateTitle">
                     <label for="titleTask"><b>Title</b></label>
                     <input type="text" :value="singleNewTask.title">
                   </div>
-                  <div>
+                  <div class="changeStatus">
                     <h4>Change status of this task</h4>
-                    <select :id="'status_select'+ singleNewTask.id" @change="changeState(singleNewTask)">
+                    <select
+                      :id="'status_select' + singleNewTask.id"
+                      @change="changeState(singleNewTask)"
+                    >
                       <option value="0">
                         Change Status
                       </option>
@@ -90,13 +110,13 @@
                     </select>
                   </div>
                   <div>
-                    <button type="button" @click="closeModal(singleNewTask)">
+                    <button class="button-update" type="button" @click="closeModal(singleNewTask)">
                       Update
                     </button>
-                    <button type="button" @click="closeModal(singleNewTask)">
+                    <button class="cancel-update" type="button" @click="closeModal(singleNewTask)">
                       Cancel
                     </button>
-                    <button type="button" @click="closeModal(singleNewTask)">
+                    <button class="button-delete" type="button" @click="closeModal(singleNewTask)">
                       Delete
                     </button>
                   </div>
@@ -123,14 +143,25 @@
                     <label for="titleTask"><b>Title</b></label>
                   </div>
                   <textarea
-                    id="titleTaskNew" name="titleTask" cols="40" rows="3"
+                    id="titleTaskNew"
+                    name="titleTask"
+                    cols="40"
+                    rows="3"
                     placeholder="Enter the name of the new task in progress"
                   />
                   <div class="buttons-div">
-                    <button class="button-add" type="button" @click="validateInProgress">
+                    <button
+                      class="button-add"
+                      type="button"
+                      @click="validateInProgress"
+                    >
                       Save
                     </button>
-                    <button class="button-cancel" type="button" @click="cancelTaskInProgress">
+                    <button
+                      class="button-cancel"
+                      type="button"
+                      @click="cancelTaskInProgress"
+                    >
                       Cancel
                     </button>
                   </div>
@@ -138,24 +169,33 @@
               </div>
             </div>
             <div
-              v-for="singleProgressTask in taskStatusInProgress" :key="singleProgressTask.title"
+              v-for="singleProgressTask in taskStatusInProgress"
+              :key="singleProgressTask.title"
               class="infoByTask2"
             >
               <div>
-                <p><a href="#" @click.prevent="openModal(singleProgressTask)">{{ singleProgressTask.title }}</a></p>
+                <p>
+                  <a href="#" @click.prevent="openModal(singleProgressTask)">{{
+                    singleProgressTask.title
+                  }}</a>
+                </p>
               </div>
-              <div :id="'modifyTaskTodo' + singleProgressTask.id" class="form-popup">
+              <div
+                :id="'modifyTaskTodo' + singleProgressTask.id"
+                class="form-popup"
+              >
                 <form action="" class="form-update">
-                  <h3>
-                    UPDATE TASK
-                  </h3>
+                  <h3>UPDATE TASK</h3>
                   <div class="updateTitle">
                     <label for="titleTask"><b>Title</b></label>
                     <input type="text" :value="singleProgressTask.title">
                   </div>
-                  <div>
+                  <div class="changeStatus">
                     <h4>Change status of this task</h4>
-                    <select :id="'status_select'+ singleProgressTask.id" @change="changeState(singleProgressTask)">
+                    <select
+                      :id="'status_select' + singleProgressTask.id"
+                      @change="changeState(singleProgressTask)"
+                    >
                       <option value="0">
                         Change Status
                       </option>
@@ -170,15 +210,17 @@
                       </option>
                     </select>
                   </div>
-                  <button type="button" @click="closeModal(singleProgressTask)">
-                    Update
-                  </button>
-                  <button type="button" @click="closeModal(singleProgressTask)">
-                    Cancel
-                  </button>
-                  <button type="button" @click="closeModal(singleProgressTask)">
-                    Delete
-                  </button>
+                  <div>
+                    <button class="button-update" type="button" @click="closeModal(singleProgressTask)">
+                      Update
+                    </button>
+                    <button class="cancel-update" type="button" @click="closeModal(singleProgressTask)">
+                      Cancel
+                    </button>
+                    <button class="button-delete" type="button" @click="closeModal(singleProgressTask)">
+                      Delete
+                    </button>
+                  </div>
                 </form>
               </div>
             </div>
@@ -202,36 +244,59 @@
                     <label for="titleTask"><b>Title</b></label>
                   </div>
                   <textarea
-                    id="titleTaskNew" name="titleTask" cols="40" rows="3"
+                    id="titleTaskNew"
+                    name="titleTask"
+                    cols="40"
+                    rows="3"
                     placeholder="Enter the name of the new task finished"
                   />
                   <div class="buttons-div">
-                    <button class="button-add" type="button" @click="validateDone">
+                    <button
+                      class="button-add"
+                      type="button"
+                      @click="validateDone"
+                    >
                       Save
                     </button>
-                    <button class="button-cancel" type="button" @click="cancelTaskDone">
+                    <button
+                      class="button-cancel"
+                      type="button"
+                      @click="cancelTaskDone"
+                    >
                       Cancel
                     </button>
                   </div>
                 </form>
               </div>
             </div>
-            <div v-for="singleDoneTask in taskStatusDone" :key="singleDoneTask.title" class="infoByTask3">
+            <div
+              v-for="singleDoneTask in taskStatusDone"
+              :key="singleDoneTask.title"
+              class="infoByTask3"
+            >
               <div>
-                <p><a href="#" @click.prevent="openModal(singleDoneTask)">{{ singleDoneTask.title }}</a></p>
+                <p>
+                  <a href="#" @click.prevent="openModal(singleDoneTask)">{{
+                    singleDoneTask.title
+                  }}</a>
+                </p>
               </div>
-              <div :id="'modifyTaskTodo' + singleDoneTask.id" class="form-popup">
+              <div
+                :id="'modifyTaskTodo' + singleDoneTask.id"
+                class="form-popup"
+              >
                 <form action="" class="form-update">
-                  <h3>
-                    UPDATE TASK
-                  </h3>
+                  <h3>UPDATE TASK</h3>
                   <div class="updateTitle">
                     <label for="titleTask"><b>Title</b></label>
                     <input type="text" :value="singleDoneTask.title">
                   </div>
-                  <div>
+                  <div class="changeStatus">
                     <h4>Change status of this task</h4>
-                    <select :id="'status_select'+ singleDoneTask.id" @change="changeState(singleDoneTask)">
+                    <select
+                      :id="'status_select' + singleDoneTask.id"
+                      @change="changeState(singleDoneTask)"
+                    >
                       <option value="0">
                         Change Status
                       </option>
@@ -246,15 +311,17 @@
                       </option>
                     </select>
                   </div>
-                  <button type="button" @click="closeModal(singleDoneTask)">
-                    Update
-                  </button>
-                  <button type="button" @click="closeModal(singleDoneTask)">
-                    Cancel
-                  </button>
-                  <button type="button" @click="closeModal(singleDoneTask)">
-                    Delete
-                  </button>
+                  <div>
+                    <button class="button-update" type="button" @click="closeModal(singleDoneTask)">
+                      Update
+                    </button>
+                    <button class="cancel-update" type="button" @click="closeModal(singleDoneTask)">
+                      Cancel
+                    </button>
+                    <button class="button-delete" type="button" @click="closeModal(singleDoneTask)">
+                      Delete
+                    </button>
+                  </div>
                 </form>
               </div>
             </div>
@@ -266,7 +333,6 @@
 </template>
 
 <script>
-
 export default {
   data() {
     return {
@@ -309,7 +375,11 @@ export default {
     },
     saveNewTask() {
       this.newTaskName = document.getElementById('titleTaskNew').value;
-      this.tasks.push({ id: this.tasks.length + 1, title: this.newTaskName, status: 1 });
+      this.tasks.push({
+        id: this.tasks.length + 1,
+        title: this.newTaskName,
+        status: 1,
+      });
       document.getElementById('newTaskToAdd').style.display = 'none';
       document.getElementById('titleTaskNew').value = '';
       console.log(this.tasks);
@@ -317,7 +387,9 @@ export default {
     validateNew() {
       const nameNewTask = document.getElementById('titleTaskNew').value;
       if (nameNewTask === null || nameNewTask === '') {
-        alert('MENSAJE DE ERROR: Hace un Overlay en la ventana. Quitar el alert');
+        alert(
+          'MENSAJE DE ERROR: Hace un Overlay en la ventana. Quitar el alert',
+        );
       } else {
         this.saveNewTask();
       }
@@ -339,7 +411,9 @@ export default {
     validateInProgress() {
       const nameProgressTask = document.getElementById('titleTaskProgress').value;
       if (nameProgressTask === null || nameProgressTask === '') {
-        alert('MENSAJE DE ERROR: Hace un Overlay en la ventana. Quitar el alert');
+        alert(
+          'MENSAJE DE ERROR: Hace un Overlay en la ventana. Quitar el alert',
+        );
       } else {
         this.saveProgressTask();
       }
@@ -361,7 +435,9 @@ export default {
     validateDone() {
       const nameDoneTask = document.getElementById('titleTaskDone').value;
       if (nameDoneTask === null || nameDoneTask === '') {
-        alert('MENSAJE DE ERROR: Hace un Overlay en la ventana. Quitar el alert');
+        alert(
+          'MENSAJE DE ERROR: Hace un Overlay en la ventana. Quitar el alert',
+        );
       } else {
         this.saveDoneTask();
       }
@@ -381,7 +457,9 @@ export default {
       console.log(taskCard);
     },
     changeState(taskCard) {
-      const selectedStatus = document.getElementById(`status_select${taskCard.id}`);
+      const selectedStatus = document.getElementById(
+        `status_select${taskCard.id}`,
+      );
       const valueStatus = selectedStatus.options[selectedStatus.selectedIndex].value;
       console.log('value selected');
       console.log(valueStatus);
@@ -582,7 +660,7 @@ p {
   border-radius: 8px;
   margin-top: 3%;
   border: none;
-  border-bottom: 2px solid #B6C197;
+  border-bottom: 2px solid #b6c197;
   padding: 2%;
 }
 
@@ -592,7 +670,7 @@ p {
   border-radius: 8px;
   margin-top: 3%;
   border: none;
-  border-bottom: 2px solid #BD6B6A;
+  border-bottom: 2px solid #bd6b6a;
   padding: 2%;
 }
 
@@ -608,11 +686,67 @@ p {
 }
 
 .form-update {
-  width: 13rem;
-  height: 9rem;
+  width: 14rem;
+  height: 18rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-direction: column;
+  align-items: center;
+}
+
+.form-update > button {
+  width: 4rem;
+}
+.form-update > h3 {
+  color: var(--subtitle-landing);
+}
+
+.updateTitle {
+  display: flex;
+  flex-direction: column;
+}
+.updateTitle > label {
+  color: var(--subtitle-landing);
+  margin-bottom: 0.5rem;
+}
+
+.titleTask {
+  margin-bottom: 0.5rem;
+}
+
+.changeStatus > h4 {
+  color: var(--subtitle-landing);
+  margin-bottom: 0.5rem;
+}
+
+.button-delete {
+  align-items: center;
+  background-color: whitesmoke;
+  border-radius: 8px;
+  margin-top: 3%;
+  border: none;
+  border-bottom: 2px solid red;
+  padding: 2%;
+}
+
+.button-update {
+  align-items: center;
+  background-color: whitesmoke;
+  border-radius: 8px;
+  margin-top: 3%;
+  border: none;
+  border-bottom: 2px solid #b6c197;
+  padding: 2%;
+}
+
+.cancel-update {
+  align-items: center;
+  background-color: whitesmoke;
+  border-radius: 8px;
+  margin-top: 3%;
+  border: none;
+  border-bottom: 2px solid #bd6b6a;
+  padding: 2%;
 }
 
 @media only screen and (max-width: 700px) {
@@ -661,8 +795,8 @@ p {
   }
 
   .form-container {
-  width: 12rem;
-  height: 13rem;
-}
+    width: 12rem;
+    height: 13rem;
+  }
 }
 </style>
