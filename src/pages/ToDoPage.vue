@@ -512,13 +512,11 @@ h1 {
   width: 15%;
   justify-content: center;
   border: none;
-  border-bottom: 2px solid grey;
 }
 
 .buttonsMenu:hover {
   border-bottom: 2px solid var(--component-three);
 }
-
 .mainMenu {
   display: flex;
   flex-direction: row;
@@ -658,7 +656,7 @@ p {
   border: 2px solid #ccc;
   border-radius: 4px;
   background-color: #f8f8f8;
-  font-size: 16px;
+  font-size: 1rem;
   resize: none;
 }
 
@@ -670,7 +668,7 @@ p {
   border: 2px solid #ccc;
   border-radius: 4px;
   background-color: #f8f8f8;
-  font-size: 16px;
+  font-size: 1rem;
   resize: none;
 }
 
@@ -694,30 +692,28 @@ p {
 
 .button-add {
   align-items: center;
-  background-color: whitesmoke;
+  background-color: #b6c197;
   border-radius: 8px;
   margin-top: 3%;
   border: none;
-  border-bottom: 2px solid #b6c197;
   padding: 2%;
 }
 
 .button-cancel {
   align-items: center;
-  background-color: whitesmoke;
+  background-color: lightgrey;
   border-radius: 8px;
   margin-top: 3%;
   border: none;
-  border-bottom: 2px solid #bd6b6a;
   padding: 2%;
 }
 
 .button-cancel:hover {
-  background-color: #bd6b6a;
+  opacity: 70%;
 }
 
 .button-add:hover {
-  background-color: #b6c197;
+  opacity: 70%;
 }
 
 .buttons-div {
@@ -782,45 +778,42 @@ p {
 
 .button-delete {
   align-items: center;
-  background-color: whitesmoke;
+  background-color: #bd6b6a;
   border-radius: 8px;
   margin-top: 0.5rem;
   border: none;
-  border-bottom: 2px solid darkgrey;
   padding: 2%;
   font-size: 1em;
 }
 
 .button-update {
   align-items: center;
-  background-color: whitesmoke;
+  background-color: #b6c197;
   border-radius: 8px;
   border: none;
-  border-bottom: 2px solid #b6c197;
   padding: 2%;
   font-size: 1em;
 }
 
 .cancel-update {
   align-items: center;
-  background-color: whitesmoke;
+  background-color: lightgrey;
   border-radius: 8px;
   border: none;
-  border-bottom: 2px solid #bd6b6a;
   padding: 2%;
   margin-left: 0.5rem;
   font-size: 1em;
 }
 .button-delete:hover {
-  background-color: darkgrey;
+  opacity: 70%;
 }
 
 .button-update:hover {
-  background-color: #b6c197;
+  opacity: 70%;
 }
 
 .cancel-update:hover {
-  background-color:#bd6b6a;
+  opacity: 70%;
 }
 
 .titleTaskUpdate {
@@ -907,15 +900,15 @@ option {
   font-size: 0.7rem;
 }
 .button-delete:active {
-  background-color: darkgrey;
+  opacity: 70%;
 }
 
 .button-update:active {
-  background-color: #b6c197;
+  opacity: 70%;
 }
 
 .cancel-update:active {
-  background-color:#bd6b6a;
+  opacity: 70%;
 }
 
 }
