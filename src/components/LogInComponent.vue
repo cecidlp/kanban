@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper">
-    <img src="../assets/logIn.png">
+    <img src="@assets/images/logIn.png">
     <h1>I'm already a Task Lover!</h1>
-    <Input v-model="form.email" label="Email" type="email" placeholder="Enter your email" />
-    <Input v-model="form.password" label="Password" type="password" placeholder="Enter your password" />
-    <Button class="btn" text="Log in" @click="logIn" />
+    <InputComponent v-model="form.email" label="Email" type="email" placeholder="Enter your email" />
+    <InputComponent v-model="form.password" label="Password" type="password" placeholder="Enter your password" />
+    <ButtonComponent class="btn" text="Log in" @click="logIn" />
   </div>
 </template>
 
@@ -12,15 +12,15 @@
 import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
 
-import Button from './actionables/ButtonComponent.vue';
-import Input from './actionables/FormInputComponent.vue';
+import ButtonComponent from './actionables/ButtonComponent.vue';
+import InputComponent from './actionables/FormInputComponent.vue';
 
 import { logInSupabase } from '../userAuth.jsx';
 
 export default {
   components: {
-    Button,
-    Input,
+    ButtonComponent,
+    InputComponent,
   },
   setup() {
     const router = useRouter();

@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper">
     <h1>Get ready to be the best version of yourself!</h1>
-    <Input v-model="form.email" label="Email" type="email" placeholder="Enter your email" />
-    <Input v-model="form.password" label="Password" type="password" placeholder="Enter your password" />
-    <Input v-model="form.confirmPassword" label="Confirm your password" type="password" placeholder="Confirm your password" />
-    <Button class="btn" text="Register" @click="signUp" />
+    <InputComponent v-model="form.email" label="Email" type="email" placeholder="Enter your email" />
+    <InputComponent v-model="form.password" label="Password" type="password" placeholder="Enter your password" />
+    <InputComponent v-model="form.confirmPassword" label="Confirm your password" type="password" placeholder="Confirm your password" />
+    <ButtonComponent class="btn" text="Register" @click="signUp" />
   </div>
 </template>
 
@@ -13,15 +13,15 @@ import { reactive } from 'vue';
 
 import { useRouter } from 'vue-router';
 
-import Button from './actionables/ButtonComponent.vue';
-import Input from './actionables/FormInputComponent.vue';
+import ButtonComponent from './actionables/ButtonComponent.vue';
+import InputComponent from './actionables/FormInputComponent.vue';
 
 import { signUpSupabase } from '../userAuth.jsx';
 
 export default {
   components: {
-    Button,
-    Input,
+    ButtonComponent,
+    InputComponent,
   },
   setup() {
     const router = useRouter();

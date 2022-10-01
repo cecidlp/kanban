@@ -15,7 +15,7 @@ function goToSignIn() {
 <template>
   <div>
     <h1>Get your life together with Task Lovers!</h1>
-    <img src="../assets/landingPage.jpg">
+    <img src="@assets/images/landingPage.jpg">
     <span>
       Suck at keeping an organized life?
     </span>
