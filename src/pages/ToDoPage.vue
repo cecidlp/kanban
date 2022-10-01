@@ -44,22 +44,27 @@
                   <div class="title">
                     <label for="titleTask"><b>Title</b></label>
                   </div>
-                  <textarea id="titleTaskNew" name="titleTask" cols="40" rows="3"
-                    placeholder="Enter the name of the new task"/>
+                  <textarea
+                    id="titleTaskNew" name="titleTask" cols="40" rows="3"
+                    placeholder="Enter the name of the new task"
+                  />
                   <div class="buttons-div">
-                    <button class="button-add" type="button" @click="validateNew">Save</button>
-                    <button class="button-cancel" type="button" @click="cancelAddNewTask">Cancel</button>
+                    <button class="button-add" type="button" @click="validateNew">
+                      Save
+                    </button>
+                    <button class="button-cancel" type="button" @click="cancelAddNewTask">
+                      Cancel
+                    </button>
                   </div>
                 </form>
               </div>
             </div>
-            <div v-for="(singleNewTask) in taskStatusTodo" :key="singleNewTask.id" class="infoByTask1"
-              >
+            <div v-for="(singleNewTask) in taskStatusTodo" :key="singleNewTask.id" class="infoByTask1">
               <div>
                 <p><a href="#" @click.prevent="openModal(singleNewTask)">{{ singleNewTask.title }}</a></p>
               </div>
               <div :id="'modifyTaskTodo' + singleNewTask.id" class="form-popup">
-                <form action="" class="form-container">
+                <form action="" class="form-update">
                   <h3>
                     UPDATE TASK
                   </h3>
@@ -70,14 +75,24 @@
                   <div>
                     <h4>Change status of this task</h4>
                     <select :id="'status_select'+ singleNewTask.id" @change="changeState(singleNewTask)">
-                      <option value="0">Change Status</option>
-                      <option v-if="singleNewTask.status != 1" value="1">To Do</option>
-                      <option value="2">In Progress</option>
-                      <option value="3">Done</option>
+                      <option value="0">
+                        Change Status
+                      </option>
+                      <option v-if="singleNewTask.status != 1" value="1">
+                        To Do
+                      </option>
+                      <option value="2">
+                        In Progress
+                      </option>
+                      <option value="3">
+                        Done
+                      </option>
                     </select>
                   </div>
                   <div>
-                    <button type="button" @click="closeModal(singleNewTask)" >Cancel</button>
+                    <button type="button" @click="closeModal(singleNewTask)">
+                      Cancel
+                    </button>
                   </div>
                 </form>
               </div>
@@ -101,22 +116,30 @@
                   <div class="title">
                     <label for="titleTask"><b>Title</b></label>
                   </div>
-                  <textarea id="titleTaskProgress" name="titleTask" cols="40" rows="3"
-                    placeholder="Enter the name of the new task in progress" />
+                  <textarea
+                    id="titleTaskNew" name="titleTask" cols="40" rows="3"
+                    placeholder="Enter the name of the new task in progress"
+                  />
                   <div class="buttons-div">
-                    <button class="button-add" type="button" @click="validateInProgress">Save</button>
-                    <button class="button-cancel" type="button" @click="cancelTaskInProgress">Cancel</button>
+                    <button class="button-add" type="button" @click="validateInProgress">
+                      Save
+                    </button>
+                    <button class="button-cancel" type="button" @click="cancelTaskInProgress">
+                      Cancel
+                    </button>
                   </div>
                 </form>
               </div>
             </div>
-            <div v-for="singleProgressTask in taskStatusInProgress" v-bind:key="singleProgressTask.title"
-              class="infoByTask2">
+            <div
+              v-for="singleProgressTask in taskStatusInProgress" :key="singleProgressTask.title"
+              class="infoByTask2"
+            >
               <div>
                 <p><a href="#" @click.prevent="openModal(singleProgressTask)">{{ singleProgressTask.title }}</a></p>
               </div>
               <div :id="'modifyTaskTodo' + singleProgressTask.id" class="form-popup">
-                <form action="" class="form-container">
+                <form action="" class="form-update">
                   <h3>
                     UPDATE TASK
                   </h3>
@@ -127,13 +150,23 @@
                   <div>
                     <h4>Change status of this task</h4>
                     <select :id="'status_select'+ singleProgressTask.id" @change="changeState(singleProgressTask)">
-                      <option value="0">Change Status</option>
-                      <option value="1">To Do</option>
-                      <option v-if="singleProgressTask.status != 2" value="2">In Progress</option>
-                      <option value="3">Done</option>
+                      <option value="0">
+                        Change Status
+                      </option>
+                      <option value="1">
+                        To Do
+                      </option>
+                      <option v-if="singleProgressTask.status != 2" value="2">
+                        In Progress
+                      </option>
+                      <option value="3">
+                        Done
+                      </option>
                     </select>
                   </div>
-                  <button type="button" @click="closeModal(singleProgressTask)" >Cancel</button>
+                  <button type="button" @click="closeModal(singleProgressTask)">
+                    Cancel
+                  </button>
                 </form>
               </div>
             </div>
@@ -156,21 +189,27 @@
                   <div class="title">
                     <label for="titleTask"><b>Title</b></label>
                   </div>
-                  <textarea id="titleTaskDone" name="titleTask" cols="40" rows="3"
-                    placeholder="Enter the name of the new task finished" />
+                  <textarea
+                    id="titleTaskNew" name="titleTask" cols="40" rows="3"
+                    placeholder="Enter the name of the new task finished"
+                  />
                   <div class="buttons-div">
-                    <button class="button-add" type="button" @click="validateDone">Save</button>
-                    <button class="button-cancel" type="button" @click="cancelTaskDone">Cancel</button>
+                    <button class="button-add" type="button" @click="validateDone">
+                      Save
+                    </button>
+                    <button class="button-cancel" type="button" @click="cancelTaskDone">
+                      Cancel
+                    </button>
                   </div>
                 </form>
               </div>
             </div>
-            <div v-for="singleDoneTask in taskStatusDone" v-bind:key="singleDoneTask.title" class="infoByTask3">
+            <div v-for="singleDoneTask in taskStatusDone" :key="singleDoneTask.title" class="infoByTask3">
               <div>
                 <p><a href="#" @click.prevent="openModal(singleDoneTask)">{{ singleDoneTask.title }}</a></p>
               </div>
               <div :id="'modifyTaskTodo' + singleDoneTask.id" class="form-popup">
-                <form action="" class="form-container">
+                <form action="" class="form-update">
                   <h3>
                     UPDATE TASK
                   </h3>
@@ -181,13 +220,23 @@
                   <div>
                     <h4>Change status of this task</h4>
                     <select :id="'status_select'+ singleDoneTask.id" @change="changeState(singleDoneTask)">
-                      <option value="0">Change Status</option>
-                      <option value="1">To Do</option>
-                      <option value="2">In Progress</option>
-                      <option v-if="singleDoneTask.status != 3" value="3">Done</option>
+                      <option value="0">
+                        Change Status
+                      </option>
+                      <option value="1">
+                        To Do
+                      </option>
+                      <option value="2">
+                        In Progress
+                      </option>
+                      <option v-if="singleDoneTask.status != 3" value="3">
+                        Done
+                      </option>
                     </select>
                   </div>
-                  <button type="button" @click="closeModal(singleDoneTask)" >Cancel</button>
+                  <button type="button" @click="closeModal(singleDoneTask)">
+                    Cancel
+                  </button>
                 </form>
               </div>
             </div>
@@ -584,5 +633,10 @@ p {
     width: 100%;
     margin-bottom: 10%;
   }
+
+  .form-container {
+  width: 12rem;
+  height: 13rem;
+}
 }
 </style>
