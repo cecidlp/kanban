@@ -837,6 +837,13 @@ option {
     margin-bottom: 10%;
   }
 
+  #titleTaskNew {
+  margin-top:4%;
+}
+
+.buttons-div {
+  margin-top: 5%;
+}
   .buttonsMenu {
     box-sizing: border-box;
     cursor: pointer;
