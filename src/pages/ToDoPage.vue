@@ -96,7 +96,7 @@
                     <button type="button" @click="closeModal(singleNewTask)">
                       Cancel
                     </button>
-                    <button type="button" @click="closeModal(singleNewTask)">
+                    <button type="button" @click="removeTask(singleNewTask)">
                       Delete
                     </button>
                   </div>
@@ -176,7 +176,7 @@
                   <button type="button" @click="closeModal(singleProgressTask)">
                     Cancel
                   </button>
-                  <button type="button" @click="closeModal(singleProgressTask)">
+                  <button type="button" @click="removeTask(singleProgressTask)">
                     Delete
                   </button>
                 </form>
@@ -252,7 +252,7 @@
                   <button type="button" @click="closeModal(singleDoneTask)">
                     Cancel
                   </button>
-                  <button type="button" @click="closeModal(singleDoneTask)">
+                  <button type="button" @click="removeTask(singleDoneTask)">
                     Delete
                   </button>
                 </form>
@@ -393,6 +393,19 @@ export default {
       console.log(taskCard.status);
 
       this.closeModal(taskCard);
+    },
+    removeTask(taskCard) {
+      const modalid = `modifyTaskTodo${taskCard.id}`;
+      // eslint-disable-next-line no-plusplus
+      for (let i = 0; i < this.tasks.length; i++) {
+        if (`modifyTaskTodo${this.tasks[i].id}` === modalid) {
+          console.log('COMPARACION');
+          console.log(`modifyTaskTodo${this.tasks[i].id}`);
+          this.tasks.splice(i, 1);
+        }
+      }
+      console.log('Array updated');
+      console.log(this.tasks);
     },
   },
 };
