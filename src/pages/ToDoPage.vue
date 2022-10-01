@@ -143,7 +143,7 @@
                     <label for="titleTask"><b>Title</b></label>
                   </div>
                   <textarea
-                    id="titleTaskNew"
+                    id="titleTaskProgress"
                     name="titleTask"
                     cols="40"
                     rows="3"
@@ -170,7 +170,7 @@
             </div>
             <div
               v-for="singleProgressTask in taskStatusInProgress"
-              :key="singleProgressTask.title"
+              :key="singleProgressTask.id"
               class="infoByTask2"
             >
               <div>
@@ -244,7 +244,7 @@
                     <label for="titleTask"><b>Title</b></label>
                   </div>
                   <textarea
-                    id="titleTaskNew"
+                    id="titleTaskDone"
                     name="titleTask"
                     cols="40"
                     rows="3"
@@ -404,11 +404,12 @@ export default {
     },
     saveProgressTask() {
       this.inProgressTaskName = document.getElementById('titleTaskProgress').value;
-      this.tasks.push({ title: this.inProgressTaskName, status: 2 });
+      this.tasks.push({ id: this.tasks.length + 1, title: this.inProgressTaskName, status: 2 });
       document.getElementById('inProgressTaskToAdd').style.display = 'none';
       document.getElementById('titleTaskProgress').value = '';
     },
     validateInProgress() {
+      console.log('ENTRANDO SAVE PROGRESS NEW');
       const nameProgressTask = document.getElementById('titleTaskProgress').value;
       if (nameProgressTask === null || nameProgressTask === '') {
         alert(
@@ -428,7 +429,7 @@ export default {
     },
     saveDoneTask() {
       this.doneTaskName = document.getElementById('titleTaskDone').value;
-      this.tasks.push({ title: this.doneTaskName, status: 3 });
+      this.tasks.push({ id: this.tasks.length + 1, title: this.doneTaskName, status: 3 });
       document.getElementById('doneTaskToAdd').style.display = 'none';
       document.getElementById('titleTaskDone').value = '';
     },
@@ -646,6 +647,30 @@ p {
   border-radius: 4px;
   background-color: #f8f8f8;
   font-size: 1rem;
+  resize: none;
+}
+
+#titleTaskProgress{
+  width: 90%;
+  height: 5rem;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
+
+#titleTaskDone {
+  width: 90%;
+  height: 5rem;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
   resize: none;
 }
 
