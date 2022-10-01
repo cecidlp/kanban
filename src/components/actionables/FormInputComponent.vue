@@ -9,29 +9,26 @@
   </div>
 </template>
 
-<script>
-import { computed } from 'vue';
+<script setup>
+import { computed, defineProps, defineEmits } from 'vue';
 
-export default {
-  props: {
-    modelValue: { type: String, default: '' },
-    label: { type: String, default: '' },
-    type: { type: String, default: 'text' },
-    placeholder: { type: String, default: '' },
+const props = defineProps({
+  modelValue: { type: String, default: '' },
+  label: { type: String, default: '' },
+  type: { type: String, default: 'text' },
+  placeholder: { type: String, default: '' },
+});
+
+const emit = defineEmits(['update:modelValue']);
+
+const input = computed({
+  get() {
+    return props.modelValue;
   },
-  setup(props, { emit }) {
-    return {
-      input: computed({
-        get() {
-          return props.modelValue;
-        },
-        set(value) {
-          emit('update:modelValue', value);
-        },
-      }),
-    };
+  set(value) {
+    emit('update:modelValue', value);
   },
-};
+});
 </script>
 
 <style scoped>

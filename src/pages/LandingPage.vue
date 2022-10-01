@@ -5,9 +5,9 @@ import Button from '../components/actionables/ButtonComponent.vue';
 
 const router = useRouter();
 
-function goToSignIn() {
+function goToSignUp() {
   router.push({
-    name: 'signin',
+    name: 'signup',
   });
 }
 </script>
@@ -22,7 +22,7 @@ function goToSignIn() {
     <span>
       Let us help you!
     </span>
-    <Button class="btn" text="Get Started" @click="goToSignIn" />
+    <Button class="btn" text="Get Started" @click="goToSignUp" />
   </div>
 </template>
 
