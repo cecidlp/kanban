@@ -87,7 +87,7 @@
                   <h3>UPDATE TASK</h3>
                   <div class="updateTitle">
                     <label for="titleTask"><b>Title</b></label>
-                    <input type="text" :value="singleNewTask.title">
+                    <input class="titleTaskUpdate" type="text" :value="singleNewTask.title">
                   </div>
                   <div class="changeStatus">
                     <h4>Change status of this task</h4>
@@ -188,7 +188,7 @@
                   <h3>UPDATE TASK</h3>
                   <div class="updateTitle">
                     <label for="titleTask"><b>Title</b></label>
-                    <input type="text" :value="singleProgressTask.title">
+                    <input class="titleTaskUpdate" type="text" :value="singleProgressTask.title">
                   </div>
                   <div class="changeStatus">
                     <h4>Change status of this task</h4>
@@ -289,7 +289,7 @@
                   <h3>UPDATE TASK</h3>
                   <div class="updateTitle">
                     <label for="titleTask"><b>Title</b></label>
-                    <input type="text" :value="singleDoneTask.title">
+                    <input class="titleTaskUpdate" type="text" :value="singleDoneTask.title">
                   </div>
                   <div class="changeStatus">
                     <h4>Change status of this task</h4>
@@ -747,6 +747,15 @@ p {
   border: none;
   border-bottom: 2px solid #bd6b6a;
   padding: 2%;
+}
+
+.titleTaskUpdate {
+  box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
 }
 
 @media only screen and (max-width: 700px) {
