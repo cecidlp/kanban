@@ -91,7 +91,13 @@
                   </div>
                   <div>
                     <button type="button" @click="closeModal(singleNewTask)">
+                      Update
+                    </button>
+                    <button type="button" @click="closeModal(singleNewTask)">
                       Cancel
+                    </button>
+                    <button type="button" @click="closeModal(singleNewTask)">
+                      Delete
                     </button>
                   </div>
                 </form>
@@ -165,7 +171,13 @@
                     </select>
                   </div>
                   <button type="button" @click="closeModal(singleProgressTask)">
+                    Update
+                  </button>
+                  <button type="button" @click="closeModal(singleProgressTask)">
                     Cancel
+                  </button>
+                  <button type="button" @click="closeModal(singleProgressTask)">
+                    Delete
                   </button>
                 </form>
               </div>
@@ -235,7 +247,13 @@
                     </select>
                   </div>
                   <button type="button" @click="closeModal(singleDoneTask)">
+                    Update
+                  </button>
+                  <button type="button" @click="closeModal(singleDoneTask)">
                     Cancel
+                  </button>
+                  <button type="button" @click="closeModal(singleDoneTask)">
+                    Delete
                   </button>
                 </form>
               </div>
