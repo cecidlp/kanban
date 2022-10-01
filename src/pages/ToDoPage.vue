@@ -39,7 +39,7 @@
               <div id="newTaskToAdd" class="form-popup">
                 <form action="" class="form-container">
                   <h3 class="title-newtask">
-                    Add New Task TO DO
+                    Add task TO DO
                   </h3>
                   <div class="title">
                     <label for="titleTask"><b>Title</b></label>
@@ -77,7 +77,7 @@
             >
               <div>
                 <p>
-                  <a href="#" @click.prevent="openModal(singleNewTask)">{{
+                  <a class="title-link" href="#" @click.prevent="openModal(singleNewTask)">{{
                     singleNewTask.title
                   }}</a>
                 </p>
@@ -87,7 +87,7 @@
                   <h3>UPDATE TASK</h3>
                   <div class="updateTitle">
                     <label for="titleTask"><b>Title</b></label>
-                    <input type="text" :value="singleNewTask.title">
+                    <input class="titleTaskUpdate" type="text" :value="singleNewTask.title">
                   </div>
                   <div class="changeStatus">
                     <h4>Change status of this task</h4>
@@ -137,7 +137,7 @@
               <div id="inProgressTaskToAdd" class="form-popup">
                 <form action="" class="form-container">
                   <h3 class="title-newtask">
-                    Add New Task IN PROGRESS
+                    Add task IN PROGRESS
                   </h3>
                   <div class="title">
                     <label for="titleTask"><b>Title</b></label>
@@ -147,7 +147,7 @@
                     name="titleTask"
                     cols="40"
                     rows="3"
-                    placeholder="Enter the name of the new task in progress"
+                    placeholder="Enter the name of the new task"
                   />
                   <div class="buttons-div">
                     <button
@@ -175,7 +175,7 @@
             >
               <div>
                 <p>
-                  <a href="#" @click.prevent="openModal(singleProgressTask)">{{
+                  <a class="title-link" href="#" @click.prevent="openModal(singleProgressTask)">{{
                     singleProgressTask.title
                   }}</a>
                 </p>
@@ -188,7 +188,7 @@
                   <h3>UPDATE TASK</h3>
                   <div class="updateTitle">
                     <label for="titleTask"><b>Title</b></label>
-                    <input type="text" :value="singleProgressTask.title">
+                    <input class="titleTaskUpdate" type="text" :value="singleProgressTask.title">
                   </div>
                   <div class="changeStatus">
                     <h4>Change status of this task</h4>
@@ -238,7 +238,7 @@
               <div id="doneTaskToAdd" class="form-popup">
                 <form action="" class="form-container">
                   <h3 class="title-newtask">
-                    Add New Task DONE
+                    Add task DONE
                   </h3>
                   <div class="title">
                     <label for="titleTask"><b>Title</b></label>
@@ -248,7 +248,7 @@
                     name="titleTask"
                     cols="40"
                     rows="3"
-                    placeholder="Enter the name of the new task finished"
+                    placeholder="Enter the name of the new task"
                   />
                   <div class="buttons-div">
                     <button
@@ -276,7 +276,7 @@
             >
               <div>
                 <p>
-                  <a href="#" @click.prevent="openModal(singleDoneTask)">{{
+                  <a class="title-link" href="#" @click.prevent="openModal(singleDoneTask)">{{
                     singleDoneTask.title
                   }}</a>
                 </p>
@@ -289,7 +289,7 @@
                   <h3>UPDATE TASK</h3>
                   <div class="updateTitle">
                     <label for="titleTask"><b>Title</b></label>
-                    <input type="text" :value="singleDoneTask.title">
+                    <input class="titleTaskUpdate" type="text" :value="singleDoneTask.title">
                   </div>
                   <div class="changeStatus">
                     <h4>Change status of this task</h4>
@@ -570,7 +570,7 @@ h1 {
 }
 
 .infoByTask1 {
-  height: 5rem;
+  height: 6rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -582,7 +582,7 @@ h1 {
 }
 
 .infoByTask2 {
-  height: 5rem;
+  height: 6rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -594,7 +594,7 @@ h1 {
 }
 
 .infoByTask3 {
-  height: 5rem;
+  height: 6rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -646,7 +646,7 @@ p {
   border: 2px solid #ccc;
   border-radius: 4px;
   background-color: #f8f8f8;
-  font-size: 16px;
+  font-size: 1rem;
   resize: none;
 }
 
@@ -712,10 +712,33 @@ p {
   padding: 2%;
 }
 
+.button-cancel:hover {
+  background-color: #bd6b6a;
+}
+
+.button-add:hover {
+  background-color: #b6c197;
+}
+
 .buttons-div {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+}
+
+.title-link {
+  text-decoration: none;
+  color: var(--title-color);
+}
+
+.title-link:hover {
+  font-weight: bold;
+
+}
+
+.title-link:active {
+  font-weight: bold;
+
 }
 
 /* MODAL UPDATE TASK */
@@ -761,30 +784,67 @@ p {
   align-items: center;
   background-color: whitesmoke;
   border-radius: 8px;
-  margin-top: 3%;
+  margin-top: 0.5rem;
   border: none;
-  border-bottom: 2px solid red;
+  border-bottom: 2px solid darkgrey;
   padding: 2%;
+  font-size: 1em;
 }
 
 .button-update {
   align-items: center;
   background-color: whitesmoke;
   border-radius: 8px;
-  margin-top: 3%;
   border: none;
   border-bottom: 2px solid #b6c197;
   padding: 2%;
+  font-size: 1em;
 }
 
 .cancel-update {
   align-items: center;
   background-color: whitesmoke;
   border-radius: 8px;
-  margin-top: 3%;
   border: none;
   border-bottom: 2px solid #bd6b6a;
   padding: 2%;
+  margin-left: 0.5rem;
+  font-size: 1em;
+}
+.button-delete:hover {
+  background-color: darkgrey;
+}
+
+.button-update:hover {
+  background-color: #b6c197;
+}
+
+.cancel-update:hover {
+  background-color:#bd6b6a;
+}
+
+.titleTaskUpdate {
+  box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+    padding-left: 4%;
+}
+
+select {
+  padding: 1%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 1rem;
+  resize: none;
+}
+
+option {
+  font-size: 1rem;
 }
 
 @media only screen and (max-width: 700px) {
@@ -836,5 +896,20 @@ p {
     width: 12rem;
     height: 13rem;
   }
+  option {
+  font-size: 0.7rem;
+}
+.button-delete:active {
+  background-color: darkgrey;
+}
+
+.button-update:active {
+  background-color: #b6c197;
+}
+
+.cancel-update:active {
+  background-color:#bd6b6a;
+}
+
 }
 </style>
