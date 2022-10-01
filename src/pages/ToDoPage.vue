@@ -116,7 +116,7 @@
                     <button class="cancel-update" type="button" @click="closeModal(singleNewTask)">
                       Cancel
                     </button>
-                    <button class="button-delete" type="button" @click="closeModal(singleNewTask)">
+                    <button class="button-delete" type="button" @click="removeTask(singleNewTask)">
                       Delete
                     </button>
                   </div>
@@ -217,7 +217,7 @@
                     <button class="cancel-update" type="button" @click="closeModal(singleProgressTask)">
                       Cancel
                     </button>
-                    <button class="button-delete" type="button" @click="closeModal(singleProgressTask)">
+                    <button class="button-delete" type="button" @click="removeTask(singleProgressTask)">
                       Delete
                     </button>
                   </div>
@@ -318,7 +318,7 @@
                     <button class="cancel-update" type="button" @click="closeModal(singleDoneTask)">
                       Cancel
                     </button>
-                    <button class="button-delete" type="button" @click="closeModal(singleDoneTask)">
+                    <button class="button-delete" type="button" @click="removeTask(singleDoneTask)">
                       Delete
                     </button>
                   </div>
@@ -471,6 +471,19 @@ export default {
       console.log(taskCard.status);
 
       this.closeModal(taskCard);
+    },
+    removeTask(taskCard) {
+      const modalid = `modifyTaskTodo${taskCard.id}`;
+      // eslint-disable-next-line no-plusplus
+      for (let i = 0; i < this.tasks.length; i++) {
+        if (`modifyTaskTodo${this.tasks[i].id}` === modalid) {
+          console.log('COMPARACION');
+          console.log(`modifyTaskTodo${this.tasks[i].id}`);
+          this.tasks.splice(i, 1);
+        }
+      }
+      console.log('Array updated');
+      console.log(this.tasks);
     },
   },
 };
