@@ -1,13 +1,21 @@
 <script setup>
 import { useRouter } from 'vue-router';
+import { useUserStore } from '../store/user.js';
 
 import Button from '../components/actionables/ButtonComponent.vue';
 
 const router = useRouter();
+const userStore = useUserStore();
 
-function goToSignIn() {
+if (userStore.isSignedIn) {
   router.push({
-    name: 'signin',
+    name: 'todos',
+  });
+}
+
+function goToSignUp() {
+  router.push({
+    name: 'signup',
   });
 }
 </script>
@@ -22,7 +30,7 @@ function goToSignIn() {
     <span>
       Let us help you!
     </span>
-    <Button class="btn" text="Get Started" @click="goToSignIn" />
+    <Button class="btn" text="Get Started" @click="goToSignUp" />
   </div>
 </template>
 

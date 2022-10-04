@@ -2,18 +2,21 @@
   <div class="navBar">
     <div>
       <IronhackIcon class="icon ironhack-icon" @click="goToLanding" />
-      <UserIcon v-if="!logOut" class="icon account-icon" @click="goToLogIn" />
-      <LogOutIcon v-else class="icon account-icon" @click="goToLanding" />
+      <UserIcon v-if="!userAuth.isSignedIn" class="icon account-icon" @click="goToSignIn" />
+      <SignOutIcon v-else class="icon account-icon" @click="signOut" />
     </div>
   </div>
 </template>
 
 <script setup>
 import { useRouter } from 'vue-router';
+import { useUserStore } from '../store/user.js';
 
 import IronhackIcon from './icons/IronhackIcon.vue';
-import UserIcon from './icons/UserIcon.vue';
-import LogOutIcon from './icons/LogOutIcon.vue';
+import UserIcon from './icons/SignInIcon.vue';
+import SignOutIcon from './icons/SignOutIcon.vue';
+
+const userAuth = useUserStore();
 
 const router = useRouter();
 
@@ -23,19 +26,19 @@ function goToLanding() {
   });
 }
 
-function goToLogIn() {
+function signOut() {
+  // IS NOT REACTIVE!
+  userAuth.signOut();
   router.push({
-    name: 'login',
+    name: 'index',
   });
 }
-</script>
 
-<script>
-export default {
-  props: {
-    logOut: { type: Boolean, default: false },
-  },
-};
+function goToSignIn() {
+  router.push({
+    name: 'signin',
+  });
+}
 </script>
 
 <style scoped>

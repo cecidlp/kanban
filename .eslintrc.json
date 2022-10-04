@@ -17,6 +17,7 @@
         "allowImportExportEverywhere": "off",
         "linebreak-style": 0,
         "import/prefer-default-export": "off",
-        "vue/no-v-model-argument": "off"
+        "vue/no-v-model-argument": "off",
+        "import/extensions": "off"
     }
 }
