@@ -21,6 +21,16 @@ const routes = [
     name: 'signin',
     component: () => import(/* webpackChunkName: 'signin' */ './components/SignInComponent.vue'),
   },
+  {
+    path: '/TodoList',
+    name: 'TodoList',
+    component: () => import(/* webpackChunkName: 'TodoList' */ './components/ToDoListComponent.vue'),
+  },
+  {
+    path: '/menuTodo',
+    name: 'menuTodo',
+    component: () => import(/* webpackChunkName: 'menuTodo' */ './components/MenuTodoComponent.vue'),
+  },
 ];
 
 const router = createRouter({

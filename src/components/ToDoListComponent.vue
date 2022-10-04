@@ -1,8 +1,12 @@
-<script setup>
+<template>
+  <h1>TODO LIST COMPONENT</h1>
+
+</template>
+
+<script>
+
 </script>
 
-<template>
-  <div>
-    <h1>ToDo List</h1>
-  </div>
-</template>
+<style scoped>
+
+</style>
