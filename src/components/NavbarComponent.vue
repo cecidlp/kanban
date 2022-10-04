@@ -2,14 +2,13 @@
   <div class="navBar">
     <div>
       <IronhackIcon class="icon ironhack-icon" @click="goToLanding" />
-      <UserIcon v-if="!userAuth.isLogged()" class="icon account-icon" @click="goToSignIn" />
+      <UserIcon v-if="!userAuth.isSignedIn" class="icon account-icon" @click="goToSignIn" />
       <SignOutIcon v-else class="icon account-icon" @click="signOut" />
     </div>
   </div>
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '../store/user.js';
 
@@ -40,11 +39,6 @@ function goToSignIn() {
     name: 'signin',
   });
 }
-
-defineProps({
-  signedIn: { type: Boolean, default: false },
-});
-
 </script>
 
 <style scoped>
