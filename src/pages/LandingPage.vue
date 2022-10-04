@@ -1,9 +1,17 @@
 <script setup>
 import { useRouter } from 'vue-router';
+import { useUserStore } from '../store/user.js';
 
 import Button from '../components/actionables/ButtonComponent.vue';
 
 const router = useRouter();
+const userStore = useUserStore();
+
+if (userStore.isSignedIn) {
+  router.push({
+    name: 'todos',
+  });
+}
 
 function goToSignUp() {
   router.push({

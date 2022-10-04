@@ -18,8 +18,14 @@ import InputComponent from '../components/actionables/FormInputComponent.vue';
 
 import { useUserStore } from '../store/user.js';
 
-const userAuth = useUserStore();
+const userStore = useUserStore();
 const router = useRouter();
+
+if (userStore.isSignedIn) {
+  router.push({
+    name: 'todos',
+  });
+}
 
 // TODO: Check that both password match
 const form = reactive({
@@ -29,7 +35,7 @@ const form = reactive({
 });
 
 async function signUp() {
-  const { error } = await userAuth.signIn(form.email, form.password);
+  const { error } = await userStore.signIn(form.email, form.password);
 
   if (error !== null) {
     // TODO: Better error handling
