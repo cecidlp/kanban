@@ -4,29 +4,46 @@ import { createClient } from '@supabase/supabase-js';
 
 export const useUserStore = defineStore('user', () => {
   const client = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_KEY);
+
   const isSignedIn = ref(!!client.auth.user());
 
   async function signUp(email, password) {
-    isSignedIn.value = true;
-    return client.auth.signUp({
+    const { user, error } = client.auth.signUp({
       email,
       password,
     });
+
+    if (!error) {
+      isSignedIn.value = true;
+    }
+
+    return { user, error };
   }
   async function signIn(email, password) {
-    isSignedIn.value = true;
-    return client.auth.signIn({
+    const { user, error } = client.auth.signIn({
       email,
       password,
     });
+
+    if (!error) {
+      isSignedIn.value = true;
+    }
+
+    return { user, error };
   }
   function getData() {
-    isSignedIn.value = !!client.auth.user();
-    return client.auth.user();
+    const { user } = client.auth.user();
+    isSignedIn.value = !!user;
+    return user;
   }
   function signOut() {
-    isSignedIn.value = false;
-    return client.auth.signOut();
+    const { error } = client.auth.signOut();
+
+    if (!error) {
+      isSignedIn.value = false;
+    }
+
+    return error;
   }
 
   return {
