@@ -9,7 +9,7 @@ const routes = [
   {
     path: '/todos',
     name: 'todos',
-    component: () => import('./components/ToDoListComponent.vue'),
+    component: () => import('./pages/ToDoPage.vue'),
   },
   {
     path: '/signin',

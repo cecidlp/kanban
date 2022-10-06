@@ -29,20 +29,8 @@
 
 <script setup>
 import { storeToRefs } from 'pinia';
-import { useRouter } from 'vue-router';
 import { useTodoStore } from '../store/todo';
-
-// TODO: Move this to TodoPage
-import { useUserStore } from '../store/user';
 import ToDoComponent from './ToDoComponent.vue';
-
-const router = useRouter();
-const userStore = useUserStore();
-if (!userStore.isSignedIn) {
-  router.push({
-    name: 'index',
-  });
-}
 
 const todoStore = useTodoStore();
 
