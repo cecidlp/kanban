@@ -13,7 +13,7 @@ export const useTodoStore = defineStore('todo', () => {
 
   const todoList = ref({});
 
-  async function updateTodoList() {
+  async function updateList() {
     const { data, error } = await client
       .from(todosCollection)
       .select('*')
@@ -25,7 +25,7 @@ export const useTodoStore = defineStore('todo', () => {
   async function newTodo(title, status = 0) {
     // 0 = todo  |  1 = in progress  |  2 = done
     const date = new Date();
-    const { data, error } = await client
+    const { error } = await client
       .from(todosCollection)
       .insert([
         {
@@ -33,9 +33,9 @@ export const useTodoStore = defineStore('todo', () => {
         },
       ]);
 
-    updateTodoList();
+    updateList();
 
-    return { data, error };
+    return { error };
   }
   async function deleteTodo(id) {
     const { error } = await client
@@ -44,38 +44,36 @@ export const useTodoStore = defineStore('todo', () => {
       .eq('user_id', userID)
       .eq('id', id);
 
-    updateTodoList();
+    updateList();
 
     return error;
   }
-  async function changeTodoTitle(id, title) {
+  async function changeTitle(id, title) {
     const date = new Date();
-    const { data, error } = await client
+    const { error } = await client
       .from(todosCollection)
-      .update({ title })
-      .update({ updated_at: date.toJSON() })
+      .update({ title, updated_at: date.toJSON() })
       .eq('user_id', userID)
       .eq('id', id);
 
-    updateTodoList();
+    updateList();
 
-    return { data, error };
+    return { error };
   }
-  async function changeTodoStatus(id, status) {
+  async function changeStatus(id, status) {
     const date = new Date();
-    const { data, error } = await client
+    const { error } = await client
       .from(todosCollection)
-      .update({ status })
-      .update({ updated_at: date.toJSON() })
+      .update({ status, updated_at: date.toJSON() })
       .eq('user_id', userID)
       .eq('id', id);
 
-    updateTodoList();
+    updateList();
 
-    return { data, error };
+    return { error };
   }
 
   return {
-    todoList, updateTodoList, newTodo, deleteTodo, changeTodoTitle, changeTodoStatus,
+    todoList, updateList, newTodo, deleteTodo, changeTitle, changeStatus,
   };
 });

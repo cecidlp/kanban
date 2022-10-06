@@ -1,7 +1,10 @@
 <template>
-  <div :class="taskClass" @mouseover="handleMouseOver()" @mouseleave="handleMouseLeave()">
-    <span class="task-title">{{ data.title }}</span>
-    <RemoveIcon v-if="mouseOver" class="task-delete" @click="deleteTodo()" />
+  <div :class="taskClass" @mouseover="handleMouseOver()" @mouseleave="handleMouseLeave()" @click="handleClickTitle()">
+    <span v-if="!inputFocus" class="task-title">{{ title }}</span>
+    <input v-else v-model="title" class="task-title" @keyup.enter="changeTitle()" @keyup.escape="handleMouseLeave()">
+    <RemoveIcon v-if="mouseOver && !inputFocus" class="task-icon" @blur="handleBlurTitle()" @click="deleteTodo()" />
+    <CheckIcon v-if="inputFocus" class="task-icon" @click="changeTitle()" />
+    <CloseIcon v-if="inputFocus" class="task-icon" @click="handleMouseLeave()" />
   </div>
 </template>
 
@@ -9,13 +12,21 @@
 import { computed, ref } from 'vue';
 import { useTodoStore } from '../store/todo';
 import RemoveIcon from './icons/RemoveIcon.vue';
+import CheckIcon from './icons/CheckIcon.vue';
+import CloseIcon from './icons/CloseIcon.vue';
 
 const todoStore = useTodoStore();
 const mouseOver = ref(false);
+const inputFocus = ref(false);
 
 const props = defineProps({
   data: { type: Object, required: true },
 });
+
+// Cool trick / Ñapa
+// I need to have a reactive variable, but at the same time, I need to not be bounded to the prop data
+// by using ref(prop.var) I copy the current value without bounding
+const title = ref(props.data.title);
 
 const taskClass = computed(() => {
   let classStr = 'task';
@@ -34,9 +45,23 @@ const taskClass = computed(() => {
   return classStr;
 });
 
+function changeTitle() {
+  todoStore.changeTitle(props.data.id, title.value);
+  inputFocus.value = false;
+}
 function deleteTodo() {
   todoStore.deleteTodo(props.data.id);
-  /* todoStore.getList(); */
+}
+
+function handleClickTitle() {
+  inputFocus.value = true;
+  // Input does not exists yet, by using SetTimeout we fix it
+  setTimeout(() => { document.querySelector('input').focus(); }, 100);
+}
+function handleBlurTitle() {
+  if (!mouseOver.value) {
+    inputFocus.value = false;
+  }
 }
 
 function handleMouseOver() {
@@ -45,6 +70,11 @@ function handleMouseOver() {
 
 function handleMouseLeave() {
   mouseOver.value = false;
+  inputFocus.value = false;
+  // If the element if focused, remove focused (if input exists)
+  // by using `?.` we avoid accesing its values and functions if is null
+  document.querySelector('input')?.blur();
+  title.value = props.data.title;
 }
 
 </script>
@@ -70,9 +100,12 @@ function handleMouseLeave() {
 .task-title {
   margin-left: 10px;
   color: var(--title-color);
+  background-color: inherit;
   font-size: 1rem;
   margin-left: 4%;
   user-select: none;
+  border: none;
+  outline: none;
 }
 
 .task-todo {
@@ -85,12 +118,13 @@ function handleMouseLeave() {
   background-color: var(--component-three);
 }
 
-.task-delete {
+.task-icon {
   width: 1.5rem;
   margin-right: 0.5rem;
+  user-select: none;
 }
 
-.task-delete:hover {
+.task-icon:hover {
   opacity: 0.5;
   transition: .5s;
 }

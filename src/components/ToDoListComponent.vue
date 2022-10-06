@@ -47,7 +47,7 @@ if (!userStore.isSignedIn) {
 const todoStore = useTodoStore();
 
 const { todoList } = storeToRefs(todoStore);
-todoStore.updateTodoList();
+todoStore.updateList();
 
 /* console.log(todoList.value); */
 </script>
