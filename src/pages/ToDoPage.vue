@@ -4,26 +4,6 @@
     <div>
       <h1>Your projects</h1>
     </div>
-    <div class="mainMenu">
-      <button class="buttonsMenu">
-        Workspaces
-      </button>
-      <button class="buttonsMenu">
-        Stars
-      </button>
-      <button class="buttonsMenu">
-        Current Board
-      </button>
-      <button class="buttonsMenu">
-        Private
-      </button>
-      <button class="buttonsMenu">
-        Share
-      </button>
-      <button class="buttonsMenu">
-        Statistical Report
-      </button>
-    </div>
     <div class="groupStatus">
       <div class="mainRow">
         <!--NEW TASKS-->
@@ -499,7 +479,9 @@ h1 {
 
 .mainContainer {
   background-color: white;
-  margin: 10%;
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 60px;
 }
 
 .buttonsMenu {

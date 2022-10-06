@@ -49,6 +49,8 @@ function goToSignIn() {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    max-width: 1000px;
   }
   .ironhack-icon {
     width: 2rem;

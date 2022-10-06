@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { createClient } from '@supabase/supabase-js';
+import { ref } from 'vue';
 import { useUserStore } from './user';
 
 const todosCollection = 'todos_list';
@@ -10,14 +11,18 @@ export const useTodoStore = defineStore('todo', () => {
   const userAuth = useUserStore();
   const userID = userAuth.getData().id;
 
-  async function GetList() {
+  const todoList = ref({});
+
+  async function updateTodoList() {
     const { data, error } = await client
       .from(todosCollection)
       .select('*')
       .eq('user_id', userID);
-    return { data, error };
+    todoList.value = data;
+    return { error };
   }
-  async function New(title, status = 0) {
+
+  async function newTodo(title, status = 0) {
     // 0 = todo  |  1 = in progress  |  2 = done
     const date = new Date();
     const { data, error } = await client
@@ -27,17 +32,23 @@ export const useTodoStore = defineStore('todo', () => {
           user_id: userID, title, status, created_at: date.toJSON(), updated_at: date.toJSON(),
         },
       ]);
+
+    updateTodoList();
+
     return { data, error };
   }
-  async function Delete(id) {
+  async function deleteTodo(id) {
     const { error } = await client
       .from(todosCollection)
       .delete()
       .eq('user_id', userID)
       .eq('id', id);
+
+    updateTodoList();
+
     return error;
   }
-  async function ChangeTitle(id, title) {
+  async function changeTodoTitle(id, title) {
     const date = new Date();
     const { data, error } = await client
       .from(todosCollection)
@@ -45,9 +56,12 @@ export const useTodoStore = defineStore('todo', () => {
       .update({ updated_at: date.toJSON() })
       .eq('user_id', userID)
       .eq('id', id);
+
+    updateTodoList();
+
     return { data, error };
   }
-  async function ChangeStatus(id, status) {
+  async function changeTodoStatus(id, status) {
     const date = new Date();
     const { data, error } = await client
       .from(todosCollection)
@@ -55,10 +69,13 @@ export const useTodoStore = defineStore('todo', () => {
       .update({ updated_at: date.toJSON() })
       .eq('user_id', userID)
       .eq('id', id);
+
+    updateTodoList();
+
     return { data, error };
   }
 
   return {
-    GetList, New, Delete, ChangeTitle, ChangeStatus,
+    todoList, updateTodoList, newTodo, deleteTodo, changeTodoTitle, changeTodoStatus,
   };
 });

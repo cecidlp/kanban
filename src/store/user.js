@@ -32,7 +32,7 @@ export const useUserStore = defineStore('user', () => {
     return { user, error };
   }
   function getData() {
-    const { user } = client.auth.user();
+    const user = client.auth.user();
     isSignedIn.value = !!user;
     return user;
   }
