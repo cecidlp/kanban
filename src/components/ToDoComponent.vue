@@ -2,7 +2,7 @@
   <div :class="taskClass" @mouseover="handleMouseOver()" @mouseleave="handleMouseLeave()" @click="handleClickTitle()">
     <span v-if="!inputFocus" class="task-title">{{ title }}</span>
     <input v-else v-model="title" class="task-title" @keyup.enter="changeTitle()" @keyup.escape="handleMouseLeave()">
-    <RemoveIcon v-if="mouseOver && !inputFocus" class="task-icon" @blur="handleBlurTitle()" @click="deleteTodo()" />
+    <RemoveIcon v-if="mouseOver && !inputFocus" class="task-icon" @blur="handleBlurTitle()" @click="deleteTask()" />
     <CheckIcon v-if="inputFocus" class="task-icon" @click="changeTitle()" />
     <CloseIcon v-if="inputFocus" class="task-icon" @click="handleMouseLeave()" />
   </div>
@@ -35,6 +35,11 @@ const taskClass = computed(() => {
     classStr += ' active';
   }
 
+  // Set class to identify new task being created (to be deleted)
+  if (props.data.id === undefined) {
+    classStr += ' dummy';
+  }
+
   if (props.data.status === 2) {
     classStr += ' task-done';
   } else if (props.data.status === 1) {
@@ -45,12 +50,25 @@ const taskClass = computed(() => {
   return classStr;
 });
 
-function changeTitle() {
-  todoStore.changeTitle(props.data.id, title.value);
-  inputFocus.value = false;
-}
-function deleteTodo() {
+function deleteTask() {
   todoStore.deleteTodo(props.data.id);
+}
+
+const emit = defineEmits(['newTaskDone']);
+
+function changeTitle() {
+  // Check if its the case of a new task being created
+  if (props.data.id !== undefined) {
+    // If title is empty, just delete the task
+    if (title.value === '') {
+      deleteTask();
+    }
+    todoStore.changeTitle(props.data.id, title.value);
+    inputFocus.value = false;
+  } else {
+    // If a new task was being created, emit event to parent to hide placeholder and save new task
+    emit('newTaskDone', title.value);
+  }
 }
 
 function handleClickTitle() {
@@ -75,7 +93,11 @@ function handleMouseLeave() {
   // by using `?.` we avoid accesing its values and functions if is null
   document.querySelector('input')?.blur();
   title.value = props.data.title;
+
+  /* deleteTaskIfEmpty(); */
 }
+
+defineExpose({ handleClickTitle });
 
 </script>
 
