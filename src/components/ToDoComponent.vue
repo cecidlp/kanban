@@ -1,7 +1,7 @@
 <template>
-  <div :class="taskClass" @mouseover="handleMouseOver()" @mouseleave="handleMouseLeave()" @mousedown="handleMouseClick()">
+  <div :class="taskClass" @mouseover="handleMouseOver()" @mouseleave="handleMouseLeave()" @mousedown="handleMouseClick()" @click="handleClickTitle()">
     <span v-if="!inputFocus" class="task-title">{{ title }}</span>
-    <input v-else v-model="title" class="task-title" @click="handleClickTitle()" @keyup.enter="changeTitle()" @keyup.escape="handleMouseLeave()">
+    <input v-else v-model="title" class="task-title" @keyup.enter="changeTitle()" @keyup.escape="handleMouseLeave()">
     <RemoveIcon v-if="mouseOver && !inputFocus" class="task-icon" @blur="handleBlurTitle()" @click="deleteTask()" />
     <CheckIcon v-if="inputFocus" class="task-icon" @click="changeTitle()" />
     <CloseIcon v-if="inputFocus" class="task-icon" @click="handleMouseLeave()" />

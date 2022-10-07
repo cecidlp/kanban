@@ -4,7 +4,7 @@
       <h2 class="todo-column-title">
         To Do
       </h2>
-      <div v-for="(todo, index) in todoList" :key="index">
+      <div v-for="todo in todoList" :key="todo.id">
         <ToDoComponent v-if="todo.status === 0" :data="todo" @task-click="handleTaskClick" />
       </div>
       <ToDoComponent v-show="creatingTask" ref="newTaskRef" :data="taskTemplate" @new-task-done="createNewTask" />
@@ -13,7 +13,7 @@
       <h2 class="todo-column-title">
         In progress
       </h2>
-      <div v-for="(todo, index) in todoList" :key="index">
+      <div v-for="todo in todoList" :key="todo.id">
         <ToDoComponent v-if="todo.status === 1" :data="todo" @task-click="handleTaskClick" />
       </div>
     </div>
@@ -21,7 +21,7 @@
       <h2 class="todo-column-title">
         Done
       </h2>
-      <div v-for="(todo, index) in todoList" :key="index">
+      <div v-for="todo in todoList" :key="todo.id">
         <ToDoComponent v-if="todo.status === 2" :data="todo" @task-click="handleTaskClick" />
       </div>
     </div>
@@ -107,6 +107,7 @@ defineExpose({
 
 .todo-column {
   width: 30%;
+  min-height: 40rem;
 }
 
 h2 {
