@@ -22,14 +22,14 @@ const routes = [
     component: () => import('./pages/SignUpComponent.vue'),
   },
   {
-    path: '/TodoList',
+    path: '/todolist',
     name: 'TodoList',
-    component: () => import(/* webpackChunkName: 'TodoList' */ './components/ToDoListComponent.vue'),
+    component: () => import('./components/ToDoListComponent.vue'),
   },
   {
     path: '/menuTodo',
     name: 'menuTodo',
-    component: () => import(/* webpackChunkName: 'menuTodo' */ './components/MenuTodoComponent.vue'),
+    component: () => import('./components/MenuTodoComponent.vue'),
   },
 ];
 

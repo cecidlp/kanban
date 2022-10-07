@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { createClient } from '@supabase/supabase-js';
+import { ref } from 'vue';
 import { useUserStore } from './user';
 
 const todosCollection = 'todos_list';
@@ -10,55 +11,69 @@ export const useTodoStore = defineStore('todo', () => {
   const userAuth = useUserStore();
   const userID = userAuth.getData().id;
 
-  async function GetList() {
+  const todoList = ref({});
+
+  async function updateList() {
     const { data, error } = await client
       .from(todosCollection)
       .select('*')
       .eq('user_id', userID);
-    return { data, error };
+    todoList.value = data;
+    return { error };
   }
-  async function New(title, status = 0) {
+
+  async function newTodo(title, status = 0) {
     // 0 = todo  |  1 = in progress  |  2 = done
     const date = new Date();
-    const { data, error } = await client
+    const { error } = await client
       .from(todosCollection)
       .insert([
         {
           user_id: userID, title, status, created_at: date.toJSON(), updated_at: date.toJSON(),
         },
       ]);
-    return { data, error };
+
+    updateList();
+
+    return { error };
   }
-  async function Delete(id) {
+  async function deleteTodo(id) {
     const { error } = await client
       .from(todosCollection)
       .delete()
       .eq('user_id', userID)
       .eq('id', id);
+
+    updateList();
+
     return error;
   }
-  async function ChangeTitle(id, title) {
+  async function changeTitle(id, title) {
     const date = new Date();
-    const { data, error } = await client
+    const { error } = await client
       .from(todosCollection)
-      .update({ title })
-      .update({ updated_at: date.toJSON() })
+      .update({ title, updated_at: date.toJSON() })
       .eq('user_id', userID)
       .eq('id', id);
-    return { data, error };
+
+    updateList();
+
+    return { error };
   }
-  async function ChangeStatus(id, status) {
+  async function changeStatus(id, status) {
     const date = new Date();
-    const { data, error } = await client
+    const { error } = await client
       .from(todosCollection)
-      .update({ status })
-      .update({ updated_at: date.toJSON() })
+      .update({ status, updated_at: date.toJSON() })
       .eq('user_id', userID)
       .eq('id', id);
-    return { data, error };
+
+    updateList();
+
+    return { error };
   }
 
   return {
-    GetList, New, Delete, ChangeTitle, ChangeStatus,
+    todoList, updateList, newTodo, deleteTodo, changeTitle, changeStatus,
   };
 });
