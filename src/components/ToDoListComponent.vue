@@ -1,28 +1,28 @@
 <template>
-  <div class="todo-list">
-    <div class="todo-column">
+  <div class="todo-list" @mousedown="handleMouseDown()" @mouseup="handleMouseUp()">
+    <div class="todo-column" @mouseenter="handleMouseOver(0)">
       <h2 class="todo-column-title">
         To Do
       </h2>
       <div v-for="(todo, index) in todoList" :key="index">
-        <ToDoComponent v-if="todo.status === 0" :data="todo" />
+        <ToDoComponent v-if="todo.status === 0" :data="todo" @task-click="handleTaskClick" />
       </div>
       <ToDoComponent v-show="creatingTask" ref="newTaskRef" :data="taskTemplate" @new-task-done="createNewTask" />
     </div>
-    <div class="todo-column">
+    <div class="todo-column" @mouseenter="handleMouseOver(1)">
       <h2 class="todo-column-title">
         In progress
       </h2>
       <div v-for="(todo, index) in todoList" :key="index">
-        <ToDoComponent v-if="todo.status === 1" :data="todo" />
+        <ToDoComponent v-if="todo.status === 1" :data="todo" @task-click="handleTaskClick" />
       </div>
     </div>
-    <div class="todo-column">
+    <div class="todo-column" @mouseenter="handleMouseOver(2)">
       <h2 class="todo-column-title">
         Done
       </h2>
       <div v-for="(todo, index) in todoList" :key="index">
-        <ToDoComponent v-if="todo.status === 2" :data="todo" />
+        <ToDoComponent v-if="todo.status === 2" :data="todo" @task-click="handleTaskClick" />
       </div>
     </div>
   </div>
@@ -60,6 +60,32 @@ function createNewTask(title) {
   todoStore.newTodo(title);
 }
 
+let isMouseDown = false;
+let currentMouseOverStatus = -1;
+let currentDragableTask = -1;
+
+function handleMouseDown() {
+  isMouseDown = true;
+}
+function handleMouseUp() {
+  isMouseDown = false;
+  if (currentMouseOverStatus !== -1 && currentDragableTask !== -1) {
+    todoStore.changeStatus(currentDragableTask, currentMouseOverStatus);
+    currentMouseOverStatus = -1;
+    currentDragableTask = -1;
+  }
+}
+
+function handleMouseOver(id) {
+  if (isMouseDown) {
+    currentMouseOverStatus = id;
+  }
+}
+
+function handleTaskClick(value) {
+  currentDragableTask = value;
+}
+
 defineExpose({
   newTask,
 });
@@ -81,5 +107,9 @@ defineExpose({
 
 .todo-column {
   width: 30%;
+}
+
+h2 {
+  user-select: none;
 }
 </style>

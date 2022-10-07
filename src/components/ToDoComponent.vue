@@ -1,7 +1,7 @@
 <template>
-  <div :class="taskClass" @mouseover="handleMouseOver()" @mouseleave="handleMouseLeave()" @click="handleClickTitle()">
+  <div :class="taskClass" @mouseover="handleMouseOver()" @mouseleave="handleMouseLeave()" @mousedown="handleMouseClick()">
     <span v-if="!inputFocus" class="task-title">{{ title }}</span>
-    <input v-else v-model="title" class="task-title" @keyup.enter="changeTitle()" @keyup.escape="handleMouseLeave()">
+    <input v-else v-model="title" class="task-title" @click="handleClickTitle()" @keyup.enter="changeTitle()" @keyup.escape="handleMouseLeave()">
     <RemoveIcon v-if="mouseOver && !inputFocus" class="task-icon" @blur="handleBlurTitle()" @click="deleteTask()" />
     <CheckIcon v-if="inputFocus" class="task-icon" @click="changeTitle()" />
     <CloseIcon v-if="inputFocus" class="task-icon" @click="handleMouseLeave()" />
@@ -54,7 +54,7 @@ function deleteTask() {
   todoStore.deleteTodo(props.data.id);
 }
 
-const emit = defineEmits(['newTaskDone']);
+const emit = defineEmits(['newTaskDone', 'taskClick']);
 
 function changeTitle() {
   // Check if its the case of a new task being created
@@ -69,6 +69,10 @@ function changeTitle() {
     // If a new task was being created, emit event to parent to hide placeholder and save new task
     emit('newTaskDone', title.value);
   }
+}
+
+function handleMouseClick() {
+  emit('taskClick', props.data.id);
 }
 
 function handleClickTitle() {
