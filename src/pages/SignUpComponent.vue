@@ -44,9 +44,11 @@ async function signUp() {
 
   // TODO: Message to handle email validation
 
-  router.push({
-    name: 'todos',
-  });
+  setTimeout(() => {
+    router.push({
+      name: 'todos',
+    });
+  }, 200);
 }
 </script>
 

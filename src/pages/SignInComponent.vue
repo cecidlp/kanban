@@ -38,9 +38,11 @@ async function signIn() {
     // TODO: Better error handling
     alert(error.message);
   }
-  router.push({
-    name: 'todos',
-  });
+  setTimeout(() => {
+    router.push({
+      name: 'todos',
+    });
+  }, 200);
 }
 </script>
 
