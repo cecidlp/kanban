@@ -60,14 +60,10 @@ async function signUp() {
   }
 
   setTimeout(() => {
-    if (userStore.getData()) {
-      router.push({
-        name: 'todos',
-      });
-    } else {
-      alert('Account creation failed!');
-    }
-  }, 1000);
+    router.push({
+      name: 'todos',
+    });
+  }, 500);
 }
 </script>
 
