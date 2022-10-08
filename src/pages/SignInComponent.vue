@@ -32,17 +32,31 @@ const form = reactive({
 });
 
 async function signIn() {
+  if (!form.email) {
+    alert('Email missing');
+    return;
+  }
+  if (!form.password) {
+    alert('Password missing');
+    return;
+  }
+
   const { error } = await userStore.signIn(form.email, form.password);
 
   if (error) {
-    // TODO: Better error handling
-    alert(error.message);
+    alert(error);
+    return;
   }
+
   setTimeout(() => {
-    router.push({
-      name: 'todos',
-    });
-  }, 200);
+    if (userStore.getData()) {
+      router.push({
+        name: 'todos',
+      });
+    } else {
+      alert('Given credentials are invalid!');
+    }
+  }, 500);
 }
 </script>
 
