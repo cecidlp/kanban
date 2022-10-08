@@ -35,20 +35,39 @@ const form = reactive({
 });
 
 async function signUp() {
-  const { error } = await userStore.signIn(form.email, form.password);
-
-  if (error !== null) {
-    // TODO: Better error handling
-    alert(error.message);
+  if (!form.email) {
+    alert('Email missing');
+    return;
+  }
+  if (!form.password) {
+    alert('Password missing');
+    return;
+  }
+  if (!form.confirmPassword) {
+    alert('Confirm password missing');
+    return;
+  }
+  if (form.password !== form.confirmPassword) {
+    alert('Password doesn\'t match');
+    return;
   }
 
-  // TODO: Message to handle email validation
+  const { error } = await userStore.signUp(form.email, form.password);
+
+  if (error) {
+    alert(error);
+    return;
+  }
 
   setTimeout(() => {
-    router.push({
-      name: 'todos',
-    });
-  }, 200);
+    if (userStore.getData()) {
+      router.push({
+        name: 'todos',
+      });
+    } else {
+      alert('Account creation failed!');
+    }
+  }, 1000);
 }
 </script>
 
