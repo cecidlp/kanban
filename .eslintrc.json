@@ -8,11 +8,17 @@
         "airbnb-base",
         "plugin:vue/recommended"
     ],
+    "plugins": [
+        "prettier"
+    ],
     "rules": {
         "vue/max-attributes-per-line": "off",
         "max-len": "off",
         "allowImportExportEverywhere": "off",
-        "linebreak-style": 0
-
+        "linebreak-style": 0,
+        "import/prefer-default-export": "off",
+        "vue/no-v-model-argument": "off",
+        "import/extensions": "off",
+        "vue/no-setup-props-destructure": "off"
     }
 }

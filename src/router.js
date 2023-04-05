@@ -4,22 +4,32 @@ const routes = [
   {
     path: '/',
     name: 'index',
-    component: () => import(/* webpackChunkName: 'index' */ './pages/LandingPage.vue'),
+    component: () => import('./pages/LandingPage.vue'),
   },
   {
     path: '/todos',
     name: 'todos',
-    component: () => import(/* webpackChunkName: 'todos' */ './pages/ToDoPage.vue'),
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: () => import(/* webpackChunkName: 'todos' */ './components/LogInComponent.vue'),
+    component: () => import('./pages/ToDoPage.vue'),
   },
   {
     path: '/signin',
     name: 'signin',
-    component: () => import(/* webpackChunkName: 'todos' */ './components/SignInComponent.vue'),
+    component: () => import('./pages/SignInComponent.vue'),
+  },
+  {
+    path: '/signup',
+    name: 'signup',
+    component: () => import('./pages/SignUpComponent.vue'),
+  },
+  {
+    path: '/todolist',
+    name: 'TodoList',
+    component: () => import('./components/ToDoListComponent.vue'),
+  },
+  {
+    path: '/menuTodo',
+    name: 'menuTodo',
+    component: () => import('./components/MenuTodoComponent.vue'),
   },
 ];
 
